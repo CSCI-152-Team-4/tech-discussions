@@ -2,11 +2,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose')
 
+
+//initialize app
+var app = express();
+
+//setup routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+//setup public file storage
+app.use('/file', express.static(path.join(__dirname + '/file')))
+
+//Mongo Setup
+var url = process.env.mongo_url
+
+mongoose.connect(url, { useNewUrlParser: true })
+  .catch( (err) => {
+    console.log("mongo error", err);
+  })
+mongoose.Promise = global.Promise;
+mongoose.set('useFindAndModify', false);
 
 app.use(logger('dev'));
 app.use(express.json());
