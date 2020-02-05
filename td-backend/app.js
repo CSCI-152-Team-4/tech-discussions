@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 
 //initialize app
@@ -18,7 +19,7 @@ app.use('/file', express.static(path.join(__dirname + '/file')))
 //Mongo Setup
 var url = process.env.mongo_url
 
-mongoose.connect(url, { useNewUrlParser: true })
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch( (err) => {
     console.log("mongo error", err);
   })
