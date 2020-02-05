@@ -14,7 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 //setup public file storage
-app.use('/file', express.static(path.join(__dirname + '/file')))
+app.use('/files', express.static(path.join(__dirname + '/file')))
 
 //Mongo Setup
 var url = process.env.mongo_url
