@@ -2,18 +2,26 @@ import React, { useMemo } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { useStoreRehydrated } from 'easy-peasy'
+import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
 
 const Navigator = () => {
   const history = useHistory();
-  const rehydrated = useStoreRehydrated()
-  const showNav = useMemo(() => history.location.pathname !== "/login", [history]);
+  const rehydrated = useStoreRehydrated();
+  const loggedIn = useStoreState(state => state.user.loggedIn); // todo add auth system
+
+  const showNav = useMemo(
+    () => history.location.pathname !== "/login" && loggedIn,
+    [history.location.pathname, loggedIn]
+  );
 
   return rehydrated ? (
     <>
-      { showNav && <div style={{ height: "10vh" }}>NavBar</div>  }{/*TODO: make navbar*/}
+      {showNav && (
+        <div style={{ height: "10vh", backgroundColor: "grey" }}>NavBar</div>
+      )}
+      {/*TODO: make navbar*/}
       <Switch>
         {Routes.map(({ Component, path, locked }, index) => {
           return locked ? (
@@ -22,13 +30,13 @@ const Navigator = () => {
               path={path}
               Component={Component}
               key={`p-index-${index}`}
-              loggedIn={true} // todo add auth system
+              loggedIn={loggedIn}
             />
           ) : (
             <Route
               exact
               path={path}
-              key={`p-index-${index}`}
+              key={`r-index-${index}`}
               render={props => <Component {...props} />}
             />
           );
@@ -41,7 +49,9 @@ const Navigator = () => {
         <Route render={props => <div>not found 404</div>} />
       </Switch>
     </>
-  ) : <div>loading state...</div>
+  ) : (
+    <div>loading state...</div>
+  );
 };
 
 const PrivateRoute = ({ Component, loggedIn, ...rest }) => (
