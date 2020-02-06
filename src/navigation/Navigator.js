@@ -2,13 +2,16 @@ import React, { useMemo } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import { useStoreRehydrated } from 'easy-peasy'
+
 import Routes from "./Routes";
 
 const Navigator = () => {
   const history = useHistory();
+  const rehydrated = useStoreRehydrated()
   const showNav = useMemo(() => history.location.pathname !== "/login", [history]);
 
-  return (
+  return rehydrated ? (
     <>
       { showNav && <div style={{ height: "10vh" }}>NavBar</div>  }{/*TODO: make navbar*/}
       <Switch>
@@ -38,7 +41,7 @@ const Navigator = () => {
         <Route render={props => <div>not found 404</div>} />
       </Switch>
     </>
-  );
+  ) : <div>loading state...</div>
 };
 
 const PrivateRoute = ({ Component, loggedIn, ...rest }) => (
