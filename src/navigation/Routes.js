@@ -1,18 +1,18 @@
-import Components from '../screens'
+import Components from "../screens";
 
 const Routes = [
   {
     Component: Components.Home,
-    name: 'Home',
-    path: '/home',
+    name: "Home",
+    path: "/home",
     locked: true
   },
   {
     Component: Components.Login,
-    name: 'Login',
-    path: '/login',
+    name: "Login",
+    path: "/login",
     locked: false
   }
-]
+];
 
-export default Routes
+export default Routes;
