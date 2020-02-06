@@ -9,11 +9,11 @@ import Routes from "./Routes";
 const Navigator = () => {
   const history = useHistory();
   const rehydrated = useStoreRehydrated();
-  const loggedIn = useStoreState(state => state.user.loggedIn); // todo add auth system
+  const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
 
   const showNav = useMemo(
-    () => history.location.pathname !== "/login" && loggedIn,
-    [history.location.pathname, loggedIn]
+    () => history.location.pathname !== "/login",
+    [history.location.pathname]
   );
 
   return rehydrated ? (

@@ -2,8 +2,8 @@ import React from 'react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
 
 const HomeScreen = () => {
-  const loggedIn = useStoreState((state)=>state.user.loggedIn)
-  const { login, logout } = useStoreActions((actions)=>actions.user)
+  const loggedIn = useStoreState((state)=>state.User.loggedIn)
+  const { login, logout } = useStoreActions((actions)=>actions.User)
 
 
   return(

@@ -1,7 +1,7 @@
 import userModel from './user'
 
 const storeModel = {
-  user: userModel,
+  User: userModel,
 };
 
 export default storeModel
