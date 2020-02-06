@@ -1,10 +1,21 @@
-import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React, { useEffect, useMemo } from "react";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Routes from "./Routes";
 
 const Navigator = () => {
+  const history = useHistory()
+
+  const showNav = useMemo(()=>(
+    history.location.pathname !== '/login'
+  ), [history])
+
   return (
+    <>
+    { showNav &&
+      <div style={{height: '10vh'}}>header</div>
+    }
     <Switch>
       {Routes.map(({ Component, path, locked }, index) => {
         return locked ? (
@@ -29,8 +40,9 @@ const Navigator = () => {
         path="/"
         render={props => <Redirect {...props} to="/home" />}
       />
-      <Route render={(props) => <div>not found 404</div>}/>
+      <Route render={props => <div>not found 404</div>} />
     </Switch>
+    </>
   );
 };
 
@@ -38,22 +50,13 @@ const PrivateRoute = ({ Component, loggedIn, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      loggedIn ? (
-        <>
-          <div style={{ height: "10vh" }}>
-            {" "}
-            {/* todo add header nav component*/}
-            header
-          </div>
-          <div style={{ height: "90vh" }}>
-            <Component {...props} />
-          </div>
-        </>
-      ) : (
-        <Redirect {...props} to="/login" />
-      )
+      loggedIn ? <Component {...props} /> : <Redirect {...props} to="/login" />
     }
   />
 );
+PrivateRoute.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  loggedIn: PropTypes.bool.isRequired
+};
 
 export default Navigator;

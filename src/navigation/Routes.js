@@ -1,14 +1,14 @@
-import Components from "../screens";
+import Screens from "../screens";
 
 const Routes = [
   {
-    Component: Components.Home,
+    Component: Screens.Home,
     name: "Home",
     path: "/home",
     locked: true
   },
   {
-    Component: Components.Login,
+    Component: Screens.Login,
     name: "Login",
     path: "/login",
     locked: false
