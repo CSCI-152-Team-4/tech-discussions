@@ -1,9 +1,13 @@
 import React from 'react';
 import Navigator from './navigation/Navigator'
+import { StoreProvider } from 'easy-peasy'
+import store from './state';
 
-function App() {
+const App = () => {
   return (
-    <Navigator />
+    <StoreProvider store={store}>
+      <Navigator/>
+    </StoreProvider>
   );
 }
 
