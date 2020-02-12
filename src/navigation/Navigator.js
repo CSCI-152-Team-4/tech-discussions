@@ -12,7 +12,7 @@ const Navigator = () => {
   const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
 
   const showNav = useMemo(
-    () => history.location.pathname !== "/login",
+    () => !["/login", "/signup"].includes(history.location.pathname),
     [history.location.pathname]
   );
 
