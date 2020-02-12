@@ -9,6 +9,7 @@ const userModel = persist({
   password: "",
   username: "",
   loggedIn: false,
+  stayLoggedIn: true,
   setLoggedIn: action((state, payload)=>{
     state.loggedIn=payload
   }),

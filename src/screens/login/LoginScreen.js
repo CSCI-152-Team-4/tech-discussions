@@ -1,28 +1,145 @@
-import React, { useEffect } from 'react'
-import { useStoreState, useStoreActions } from 'easy-peasy'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { useHistory } from "react-router-dom";
+import { useStoreState, useStoreActions } from "easy-peasy";
 
-import { Typography, Container } from '@material-ui/core'
-
-const LoginScreen = () => {
-  const loggedIn = useStoreState((state)=>state.User.loggedIn)
-  const { login, logout, setLoggedIn } = useStoreActions((actions)=>actions.User)
-  const history = useHistory()
-
-  useEffect(()=>{
-    setLoggedIn(false)
-  }, [setLoggedIn]) // set logged out
-
-  useEffect(()=>{
-    if(loggedIn)
-      history.push('/home')
-  }, [history, loggedIn])
-
+function Copyright() {
   return (
-    <Container>
-      <Typography>Login</Typography>
-    </Container>
-  )
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
 }
 
-export default LoginScreen
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(5),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}));
+
+export default function SignIn() {
+  const classes = useStyles();
+  const history = useHistory();
+
+  const { setLoggedIn } = useStoreActions(({ User }) => User);
+  const { loggedIn } = useStoreState(({User})=>User)
+  const [creds, setCreds] = useState({email: "", password: ""})
+  useEffect(() => {
+    setLoggedIn(false);
+  }, [setLoggedIn]); // set logged out
+
+  useEffect(() => {
+    if (loggedIn) history.push("/home");
+  }, [history, loggedIn]);
+
+  const handleClick = React.useCallback((e) => {
+    e.preventDefault()
+    console.log("creds", creds)
+  },[creds.email, creds.password, creds])
+  
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            onChange={(e)=>{
+              setCreds(({password})=>({password, email: e.target.value}))
+              e.persist()
+            }}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={(e)=>{
+              setCreds(({email})=>({email, password: e.target.value}))
+              e.persist()
+            }}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleClick}
+          >
+            Sign In
+          </Button>
+          <Grid container style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Grid item xs={12} style={{textAlign: 'center'}}>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item xs={12} style={{textAlign: 'center', marginTop: '.5rem'}}>
+              <Link href="#" variant="body2">
+                Don't have an account? Sign Up
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}

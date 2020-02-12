@@ -1,0 +1,39 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column
+}
+.top {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.middle {
+  height: 60%;
+}
+.bottom {
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: .5rem
+}
+.TI {
+  width: 60%;
+  margin: 1rem
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%
+}
+.submit-button {
+  background-color: blue;
+  color: white;
+  margin-top: 2rem;
+  width: 60%;
+}
