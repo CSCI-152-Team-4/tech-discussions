@@ -6,7 +6,6 @@ import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
 import NavBar from './NavBar'
-import { Container } from "@material-ui/core";
 
 const Navigator = () => {
   const history = useHistory();
@@ -30,7 +29,6 @@ const Navigator = () => {
           {Routes.map(({ Component, path, locked }, index) => {
             return locked ? (
               <PrivateRoute
-                exact
                 path={path}
                 Component={Component}
                 key={`p-index-${index}`}

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, ListItemIcon, makeStyles } from '@material-ui/core'
 import  { Menu, Search, Add } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory, useParams } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
   main: {
@@ -33,6 +33,7 @@ export default function NavBar(props) {
   const classes = useStyles()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
+  const history = useHistory()
 
   const title = useMemo(()=>{
     switch(location.pathname){
@@ -45,10 +46,15 @@ export default function NavBar(props) {
   return(
     <AppBar position="static" className={classes.main}>
       <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{width: "30%", display: 'flex', alignItems: 'center'}}>
+        <div style={{width: "50%", display: 'flex', alignItems: 'center'}}>
           <IconButton color="inherit" className={classes.menu} onClick={()=>setDrawerOpen(true)}>
             <Menu fontSize="large"/>
           </IconButton>
+          {location.pathname !== "/home" && 
+            <IconButton color="inherit" onClick={()=>history.goBack()}>
+              <ArrowBackIosIcon/>
+            </IconButton>
+          }
           <Typography variant="h5" style={{marginLeft: '0.5rem'}}>{title}</Typography>
         </div>
         <div style={{width: "70%", display: 'flex', justifyContent: 'flex-end'}}>

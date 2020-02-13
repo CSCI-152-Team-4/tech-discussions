@@ -1,5 +1,5 @@
 import LoginScreen from './login/LoginScreen'
-import HomeScreen from './home/HomeScreen'
+import HomeScreen from './main/HomeScreen'
 import SignupScreen from './signup/SignupScreen'
 
 export default {
