@@ -1,17 +1,31 @@
 import React from 'react'
-import { useStoreState, useStoreActions } from 'easy-peasy'
+
+import PostCard from '../../components/PostCard'
+import { Container, makeStyles, ListItem, List } from '@material-ui/core'
+
+const useStyles = makeStyles((theme)=>({
+  root: {
+    height: "90vh",
+    bottom: 0,
+    top: 0,
+    overflow: "scroll",
+    padding: 0,
+    backgroundColor: "rgba(232, 232, 232, 1)"
+  }
+}))
 
 const HomeScreen = () => {
-  const loggedIn = useStoreState((state)=>state.User.loggedIn)
-  const { login, logout } = useStoreActions((actions)=>actions.User)
-
-
+  const classes = useStyles()
   return(
-    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      Home screen
-      <button onClick={()=>login('1', '1')} style={{borderColor: 'black', borderWidth: '1px', width: 100}}>logged in: {loggedIn ? "yes" : "no"}</button>
-      <button onClick={()=>logout()} style={{borderColor: 'black', borderWidth: '1px', width: 100}}>logout</button>
-    </div>
+    <Container className={classes.root}>
+      <List>
+        {[0,1,2,3,4,5,6,7,8].map((i)=>(
+          <ListItem>
+            <PostCard key={i}/>
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   )
 }
 

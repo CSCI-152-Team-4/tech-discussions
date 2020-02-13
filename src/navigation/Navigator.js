@@ -11,45 +11,51 @@ const Navigator = () => {
   const history = useHistory();
   const rehydrated = useStoreRehydrated();
   const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
-
+  
   const showNav = useMemo(
-    () => !["/login", "/signup"].includes(history.location.pathname),
+    () => !["/login", "/signup", "/not-found"].includes(history.location.pathname),
     [history.location.pathname]
   );
 
   return rehydrated ? (
-    <>
-      {showNav && (
-        <NavBar/>
-      )}
-      {/*TODO: make navbar*/}
-      <Switch>
-        {Routes.map(({ Component, path, locked }, index) => {
-          return locked ? (
-            <PrivateRoute
-              exact
-              path={path}
-              Component={Component}
-              key={`p-index-${index}`}
-              loggedIn={loggedIn}
-            />
-          ) : (
-            <Route
-              exact
-              path={path}
-              key={`r-index-${index}`}
-              render={props => <Component {...props} />}
-            />
-          );
-        })}
-        <Route
-          exact
-          path="/"
-          render={props => <Redirect {...props} to="/home" />}
-        />
-        <Route render={props => <div>not found 404</div>} />
-      </Switch>
-    </>
+    <div style={{height: "100vh"}}>
+        { showNav && (
+          <div style={{height: "10vh"}}>
+            <NavBar/> 
+          </div>
+        )}
+      <div style={{height: "100%"}}>
+        <Switch>
+          {Routes.map(({ Component, path, locked }, index) => {
+            return locked ? (
+              <PrivateRoute
+                exact
+                path={path}
+                Component={Component}
+                key={`p-index-${index}`}
+                loggedIn={loggedIn}
+              />
+            ) : (
+              <Route
+                exact
+                path={path}
+                key={`r-index-${index}`}
+                render={props => <Component {...props} />}
+              />
+            );
+          })}
+          <Route
+            exact
+            path="/"
+            render={props => <Redirect {...props} to="/home" />}
+          />
+          <Route exact path="/not-found">
+            <div>not found</div>
+          </Route>
+          <Route render={()=><Redirect to="not-found"/>} />
+        </Switch>
+      </div>
+    </div>
   ) : (
     <div>loading state...</div>
   );
