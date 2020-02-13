@@ -1,5 +1,6 @@
 import Screens from "../screens";
-import MainNav from "../screens/main/MainNav";
+import MainNav from "../screens/home/MainNav";
+import PostNav from '../screens/posts/PostNav';
 
 const Routes = [
   {
@@ -19,6 +20,12 @@ const Routes = [
     name: "Signup",
     path: "/signup",
     locked: false
+  },
+  {
+    Component: PostNav,
+    name: "Posts",
+    path: "/post",
+    locked: true 
   }
 ];
 

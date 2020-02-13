@@ -1,16 +1,16 @@
 import React from 'react'
 
 import { Route, Switch } from 'react-router-dom'
-import HomeScreen from './HomeScreen'
+import NewPostScreen from './NewPostScreen'
 
-const MainNav = () => {
+const PostNav = () => {
   return(
     <Switch>
-      <Route path="/home/:postID">
-        <div>post id here</div>
+      <Route path="/post/new">
+        <NewPostScreen/>
       </Route>
-      <Route path="/home">
-        <HomeScreen/>
+      <Route path="/post">
+        <div>main post</div>
       </Route>
       <Route>
         404 not found
@@ -19,4 +19,4 @@ const MainNav = () => {
   )
 }
 
-export default MainNav
+export default PostNav
