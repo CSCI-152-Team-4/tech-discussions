@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, ListItemIcon, makeStyles } from '@material-ui/core'
 import  { Menu, Search, Add } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import { useLocation, useHistory, useParams } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
+  main: {
+    height: "100%",
+    justifyContent: 'center'
+  },
   drawer: {
     width: "75vw"
   },
@@ -27,21 +32,36 @@ const useStyles = makeStyles((theme)=>({
 export default function NavBar(props) {
   const classes = useStyles()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const location = useLocation()
+  const history = useHistory()
+
+  const title = useMemo(()=>{
+    switch(location.pathname){
+      case '/home': return "Home";
+      case "/test": return "Test";
+      default: return ""
+    }
+  }, [location])
 
   return(
-    <AppBar position="static">
+    <AppBar position="static" className={classes.main}>
       <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{width: "30%", display: 'flex', alignItems: 'center'}}>
+        <div style={{width: "50%", display: 'flex', alignItems: 'center'}}>
           <IconButton color="inherit" className={classes.menu} onClick={()=>setDrawerOpen(true)}>
             <Menu fontSize="large"/>
           </IconButton>
-          <Typography variant="h5" style={{marginLeft: '0.5rem'}}>Home</Typography>
+          {location.pathname !== "/home" && 
+            <IconButton color="inherit" onClick={()=>history.goBack()}>
+              <ArrowBackIosIcon/>
+            </IconButton>
+          }
+          <Typography variant="h5" style={{marginLeft: '0.5rem'}}>{title}</Typography>
         </div>
         <div style={{width: "70%", display: 'flex', justifyContent: 'flex-end'}}>
           <IconButton color="inherit">
             <Search fontSize="large"/> 
           </IconButton>
-          <IconButton style={{marginRight: '.5rem', marginRight: 0, paddingLeft: 0}} color="inherit">
+          <IconButton style={{marginRight: '.5rem' }} color="inherit">
             <Add fontSize="large"/>
           </IconButton>
         </div>

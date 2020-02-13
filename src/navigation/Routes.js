@@ -1,8 +1,9 @@
 import Screens from "../screens";
+import MainNav from "../screens/main/MainNav";
 
 const Routes = [
   {
-    Component: Screens.Home,
+    Component: MainNav,
     name: "Home",
     path: "/home",
     locked: true
