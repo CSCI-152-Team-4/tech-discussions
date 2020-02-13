@@ -6,7 +6,8 @@ import { useLocation } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
   main: {
-    height: "100%"
+    height: "100%",
+    justifyContent: 'center'
   },
   drawer: {
     width: "75vw"
@@ -54,7 +55,7 @@ export default function NavBar(props) {
           <IconButton color="inherit">
             <Search fontSize="large"/> 
           </IconButton>
-          <IconButton style={{marginRight: '.5rem', marginRight: 0, paddingLeft: 0}} color="inherit">
+          <IconButton style={{marginRight: '.5rem' }} color="inherit">
             <Add fontSize="large"/>
           </IconButton>
         </div>

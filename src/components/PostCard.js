@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Card, CardContent, makeStyles, Chip } from '@material-ui/core'
+import { Typography, Card, CardContent, makeStyles, Chip, Button } from '@material-ui/core'
 
 const useStyles = makeStyles((theme)=>({
   card: {
@@ -31,10 +31,10 @@ const useStyles = makeStyles((theme)=>({
  }
 }))
 
-export default function PostCard(props){
+export default function PostCard({handleClick}){
   const classes = useStyles()
   return(
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={handleClick}>
       <CardContent className={classes.content}>
         <div style={{height: "20%", width: "70%", display: 'flex', flexDirection: "row", justifyContent: "flex-start", paddingTop: ".5rem"}}>
           <Typography className={classes.stat}>12 Views</Typography>

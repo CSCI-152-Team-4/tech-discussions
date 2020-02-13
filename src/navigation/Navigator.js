@@ -6,6 +6,7 @@ import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
 import NavBar from './NavBar'
+import { Container } from "@material-ui/core";
 
 const Navigator = () => {
   const history = useHistory();
@@ -18,13 +19,13 @@ const Navigator = () => {
   );
 
   return rehydrated ? (
-    <div style={{height: "100vh"}}>
+    <div style={{height: "100vh", display: "flex", flexDirection: "column"}}>
         { showNav && (
-          <div style={{height: "10vh"}}>
+          <div style={{flex: .1}}>
             <NavBar/> 
           </div>
         )}
-      <div style={{height: "100%"}}>
+      <div style={{flex: 1, height: "90%"}}>
         <Switch>
           {Routes.map(({ Component, path, locked }, index) => {
             return locked ? (
