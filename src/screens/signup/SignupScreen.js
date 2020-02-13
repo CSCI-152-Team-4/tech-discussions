@@ -48,15 +48,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+export default function SignupScreen() {
   const classes = useStyles();
   const history = useHistory();
 
-  const { setLoggedIn, login } = useStoreActions(({ User }) => User);
+  const { setLoggedIn, signup } = useStoreActions(({ User }) => User);
   const { loggedIn, loginError } = useStoreState(({User})=>User)
   const [creds, setCreds] = useState({email: "", password: ""})
-  const [err, setErr] = useState(""
-  )
+  const [err, setErr] = useState("")
+
   useEffect(() => {
     setLoggedIn(false);
   }, [setLoggedIn]); // set logged out
@@ -73,10 +73,10 @@ export default function SignIn() {
     e.preventDefault()
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
-        login(creds)
+        signup(creds)
       else setErr("Must Use Fresno State Email")
     }
-  }, [creds.email, creds.password, creds, login])
+  }, [creds.email, creds.password, creds, signup])
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,10 +86,10 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
-          <Typography style={{textAlign: 'center', color: 'red'}}>{ err }</Typography>
+          <Typography style={{textAlign: 'center', color: 'red'}}>{err}</Typography>
           <TextField
             variant="outlined"
             margin="normal"
@@ -132,17 +132,12 @@ export default function SignIn() {
             className={classes.submit}
             onClick={handleClick}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Grid item xs={12} style={{textAlign: 'center'}}>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item xs={12} style={{textAlign: 'center', marginTop: '.5rem'}}>
-              <Link onClick={()=>history.push('/signup')} variant="body2">
-                Don't have an account? Sign Up
+              <Link onClick={()=>history.push('/login')} variant="body2">
+                Already have an account? Login here
               </Link>
             </Grid>
           </Grid>

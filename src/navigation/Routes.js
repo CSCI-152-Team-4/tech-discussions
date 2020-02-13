@@ -12,6 +12,12 @@ const Routes = [
     name: "Login",
     path: "/login",
     locked: false
+  },
+  {
+    Component: Screens.Signup,
+    name: "Signup",
+    path: "/signup",
+    locked: false
   }
 ];
 

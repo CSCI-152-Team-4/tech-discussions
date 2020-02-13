@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
+import NavBar from './NavBar'
 
 const Navigator = () => {
   const history = useHistory();
@@ -12,14 +13,14 @@ const Navigator = () => {
   const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
 
   const showNav = useMemo(
-    () => history.location.pathname !== "/login",
+    () => !["/login", "/signup"].includes(history.location.pathname),
     [history.location.pathname]
   );
 
   return rehydrated ? (
     <>
       {showNav && (
-        <div style={{ height: "10vh", backgroundColor: "grey" }}>NavBar</div>
+        <NavBar/>
       )}
       {/*TODO: make navbar*/}
       <Switch>
