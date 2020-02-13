@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
+import NavBar from './NavBar'
 
 const Navigator = () => {
   const history = useHistory();
@@ -19,7 +20,7 @@ const Navigator = () => {
   return rehydrated ? (
     <>
       {showNav && (
-        <div style={{ height: "10vh", backgroundColor: "grey" }}>NavBar</div>
+        <NavBar/>
       )}
       {/*TODO: make navbar*/}
       <Switch>

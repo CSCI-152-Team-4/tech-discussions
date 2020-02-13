@@ -55,6 +55,8 @@ export default function SignIn() {
   const { setLoggedIn, login } = useStoreActions(({ User }) => User);
   const { loggedIn, loginError } = useStoreState(({User})=>User)
   const [creds, setCreds] = useState({email: "", password: ""})
+  const [err, setErr] = useState(""
+  )
   useEffect(() => {
     setLoggedIn(false);
   }, [setLoggedIn]); // set logged out
@@ -63,10 +65,16 @@ export default function SignIn() {
     if (loggedIn) history.push("/home");
   }, [history, loggedIn]);
 
+  useEffect(()=>{
+    setErr(loginError)
+  },[loginError])
+
   const handleClick = React.useCallback((e) => {
     e.preventDefault()
     if(creds.email.length > 0 && creds.password.length > 0){
-      login(creds)
+      if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
+        login(creds)
+      else setErr("Must Use Fresno State Email")
     }
   }, [creds.email, creds.password, creds, login])
 
@@ -81,7 +89,7 @@ export default function SignIn() {
           Sign In
         </Typography>
         <form className={classes.form} noValidate>
-          <Typography style={{textAlign: 'center', color: 'red'}}>{loginError}</Typography>
+          <Typography style={{textAlign: 'center', color: 'red'}}>{ err }</Typography>
           <TextField
             variant="outlined"
             margin="normal"
