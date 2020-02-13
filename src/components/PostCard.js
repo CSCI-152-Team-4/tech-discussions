@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme)=>({
    marginRight: theme.spacing(1)
  },
  tag: {
-   width: "5rem"
+   width: "5rem",
+   marginRight: theme.spacing(1)
  },
  title: {
   whiteSpace: "nowrap",
@@ -42,7 +43,11 @@ export default function PostCard({handleClick}){
           <Typography className={classes.stat}>1 Votes</Typography>
         </div>
         <Typography className={classes.title}>this is the title of my question and this is what happens when there is a really long question</Typography>
-        <Chip label="hello" className={classes.tag}/>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+          <Chip label="hello" className={classes.tag}/>
+          <Chip label="hello" className={classes.tag}/>
+          <Chip label="hello" className={classes.tag}/>
+        </div>
       </CardContent>
     </Card>
   )
