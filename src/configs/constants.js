@@ -1,3 +1,3 @@
 export default {
-  server_url: 'https://techdiscussions.xyz/'
+  server_url: 'https://techdiscussions.xyz'
 }
