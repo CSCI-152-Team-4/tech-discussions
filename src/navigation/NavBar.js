@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react'
 import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, ListItemIcon, makeStyles } from '@material-ui/core'
-import  { Menu, Search, Add } from '@material-ui/icons'
+import  { Menu, Search, Add, Home } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import { useLocation, useHistory, useParams } from 'react-router-dom'
+import { useStoreActions } from 'easy-peasy'
 
 const useStyles = makeStyles((theme)=>({
   main: {
@@ -34,6 +35,7 @@ export default function NavBar(props) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
   const history = useHistory()
+  const logout = useStoreActions((actions)=>actions.User.logout)
 
   const title = useMemo(()=>{
     switch(location.pathname){
@@ -61,7 +63,7 @@ export default function NavBar(props) {
           <IconButton color="inherit">
             <Search fontSize="large"/> 
           </IconButton>
-          <IconButton style={{marginRight: '.5rem' }} color="inherit">
+          <IconButton style={{marginRight: '.5rem' }} color="inherit" onClick={()=>history.push("/post/new")}>
             <Add fontSize="large"/>
           </IconButton>
         </div>
@@ -75,9 +77,13 @@ export default function NavBar(props) {
             </IconButton>
           </div>
           <List>
-            <ListItem button key={"text"}>
-              <ListItemIcon><Menu/></ListItemIcon>
-              <ListItemText primary={"text"} />
+            <ListItem button key={"home"} onClick={()=>{history.push("/home"); setDrawerOpen(false)}}>
+              <ListItemIcon><Home/></ListItemIcon>
+              <ListItemText primary={"Home"} />
+            </ListItem>
+            <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
+              <ListItemIcon><Home/></ListItemIcon>
+              <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
         </div>
