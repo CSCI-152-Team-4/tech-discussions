@@ -5,10 +5,22 @@ import Auth from '../../services/Authentication'
 const stall = async (time=300) => { // stalling time to test thunks (mocks an api call to server)
   await new Promise(resolve=>setTimeout(resolve,time))
 }
+
+const initial = {
+  email: "",
+  password: "",
+  username: "",
+  userId: "",
+  loggedIn: false,
+  loginError: "",
+  stayLoggedIn: true,
+}
+
 const userModel = persist({
   email: "",
   password: "",
   username: "",
+  userId: "",
   loggedIn: false,
   loginError: "",
   stayLoggedIn: true,
@@ -18,21 +30,25 @@ const userModel = persist({
   setLoginError: action((state, payload)=>{
     state.loginError = payload
   }),
+  setId: action((state, payload)=>{
+    state.userId = payload
+  }),
   login: thunk(async (actions, {email, password})=>{
     let res = await Auth.login(email, password)
-    if(res === "success"){
+    if(res.status === "success"){
       actions.setLoggedIn(true)
-    } else actions.setLoginError(res)
+      actions.setId(res.userId)
+    } else actions.setLoginError(res.status)
   }),
   signup: thunk(async(actions, {email, password})=>{
     let res = await Auth.signup(email, password)
-    if(res === "success"){
+    if(res.status === "success"){
       actions.setLoggedIn(true)
-    } else actions.setLoginError(res)
+      actions.setId(res.userId)
+    } else actions.setLoginError(res.status)
   }),
-  logout: thunk(async (actions)=>{
-    await stall()
-    actions.setLoggedIn(false)
+  logout: action((state)=>{
+    Object.assign(state, initial)
   })
 }, {
   mergeStrategy: 'mergeDeep',

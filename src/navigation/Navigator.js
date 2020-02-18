@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { useStoreRehydrated, useStoreState } from "easy-peasy";
@@ -8,13 +8,13 @@ import Routes from "./Routes";
 import NavBar from './NavBar'
 
 const Navigator = () => {
-  const history = useHistory();
   const rehydrated = useStoreRehydrated();
   const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
-  
+  const location = useLocation()
+
   const showNav = useMemo(
-    () => !["/login", "/signup", "/not-found"].includes(history.location.pathname),
-    [history.location.pathname]
+    () => !["/login", "/signup", "/not-found", "/post/new"].includes(location.pathname),
+    [location.pathname]
   );
 
   return rehydrated ? (

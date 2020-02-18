@@ -3,6 +3,7 @@ import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListIt
 import  { Menu, Search, Add, Home } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import { useLocation, useHistory, useParams } from 'react-router-dom'
+import { useStoreActions } from 'easy-peasy'
 
 const useStyles = makeStyles((theme)=>({
   main: {
@@ -34,6 +35,7 @@ export default function NavBar(props) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
   const history = useHistory()
+  const logout = useStoreActions((actions)=>actions.User.logout)
 
   const title = useMemo(()=>{
     switch(location.pathname){
@@ -75,9 +77,13 @@ export default function NavBar(props) {
             </IconButton>
           </div>
           <List>
-            <ListItem button key={"text"} onClick={()=>{history.push("/home"); setDrawerOpen(false)}}>
+            <ListItem button key={"home"} onClick={()=>{history.push("/home"); setDrawerOpen(false)}}>
               <ListItemIcon><Home/></ListItemIcon>
               <ListItemText primary={"Home"} />
+            </ListItem>
+            <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
+              <ListItemIcon><Home/></ListItemIcon>
+              <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
         </div>

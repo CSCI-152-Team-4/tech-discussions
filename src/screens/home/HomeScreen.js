@@ -3,6 +3,7 @@ import React from 'react'
 import PostCard from '../../components/PostCard'
 import { Container, makeStyles, ListItem, List } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
+import { colors } from '../../configs/theme'
 
 const useStyles = makeStyles((theme)=>({
   root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles((theme)=>({
     width: "100%",
     overflowY: "scroll",
     padding: 0,
-    backgroundColor: "rgba(232, 232, 232, 1)"
+    backgroundColor: colors.screenBackground
   }
 }))
 
