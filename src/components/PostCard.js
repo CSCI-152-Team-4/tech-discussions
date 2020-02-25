@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme)=>({
   card: {
     width: '100%',
     height: "20vh",
-    marginBottom: theme.spacing(1)
   },
   content: {
    width: "100%",
@@ -22,7 +21,8 @@ const useStyles = makeStyles((theme)=>({
  },
  tag: {
    width: "5rem",
-   marginRight: theme.spacing(1)
+   marginRight: theme.spacing(1),
+   //backgroundColor: theme.palette.grey.main
  },
  title: {
   whiteSpace: "nowrap",
@@ -32,21 +32,23 @@ const useStyles = makeStyles((theme)=>({
  }
 }))
 
-export default function PostCard({handleClick}){
+export default function PostCard({handleClick, views, answers, votes, title, tags}){
   const classes = useStyles()
   return(
     <Card className={classes.card} onClick={handleClick}>
       <CardContent className={classes.content}>
         <div style={{height: "20%", width: "70%", display: 'flex', flexDirection: "row", justifyContent: "flex-start", paddingTop: ".5rem"}}>
-          <Typography className={classes.stat}>12 Views</Typography>
-          <Typography className={classes.stat}>5 Answers</Typography>
-          <Typography className={classes.stat}>1 Votes</Typography>
+          <Typography className={classes.stat}>{views} Views</Typography>
+          <Typography className={classes.stat}>{answers} Answers</Typography>
+          <Typography className={classes.stat}>{votes} Votes</Typography>
         </div>
-        <Typography className={classes.title}>this is the title of my question and this is what happens when there is a really long question</Typography>
+        <Typography className={classes.title}>{title}</Typography>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          <Chip label="hello" className={classes.tag}/>
-          <Chip label="hello" className={classes.tag}/>
-          <Chip label="hello" className={classes.tag}/>
+          { tags.length > 0 ?
+            tags.map((tag)=><Chip color="primary" label={tag} className={classes.tag}/>)
+              :
+            <Typography>No tags</Typography>
+          }
         </div>
       </CardContent>
     </Card>

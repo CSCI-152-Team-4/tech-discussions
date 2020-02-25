@@ -9,6 +9,9 @@ const PostNav = () => {
       <Route path="/post/new">
         <NewPostScreen/>
       </Route>
+      <Route path="/post/:postID">
+        <div>hello from post</div>
+      </Route>
       <Route path="/post">
         <div>main post</div>
       </Route>

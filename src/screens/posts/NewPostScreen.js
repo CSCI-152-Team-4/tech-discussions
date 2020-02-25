@@ -1,25 +1,28 @@
 import React, { useState } from 'react'
-import { TextField, Container, makeStyles, Box, Button, Grid } from '@material-ui/core'
+import { TextField, Container, makeStyles, Box, Button, Grid, Typography } from '@material-ui/core'
 import Editor from 'for-editor'
 import { useStoreActions, useStoreState } from 'easy-peasy'
-
-import { colors } from '../../configs/theme'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme)=>({
   container: {
-    backgroundColor: colors.screenBackground,
-    padding: theme.spacing(1),
     height: "100vh",
+    width: "100vw",
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
+    backgroundColor: theme.palette.grey.main
   },
   title: {
-    backgroundColor: 'white',
-    borderRadius: ".5rem",
-    width: "100%",
-    height: "2rem"
+      width: "95%",
+      height: "3rem",
+      paddingLeft: '.5rem',
+      paddingRight: '.5rem',
+  },
+  editorContainer: {
+    border: `1px solid ${theme.palette.primary.main}`,
+    borderRadius: '.55rem'
   },
   post: {
     height: "100%",
@@ -41,21 +44,23 @@ const NewPostScreen = () => {
   const [split, setSplit] = useState(false)
   const createPost = useStoreActions((actions)=>actions.Posts.createPost)
   const userId = useStoreState((state)=>state.User.userId)
+  const history = useHistory()
 
   return(
     <Container className={classes.container}>
-      <TextField
-          placeholder="Title"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={(e)=>setTitle(capitalizeWords(e.target.value))}
-          value={title}
-          autoCapitalize="on"
-        />
-      <div style={{height: "70%", width: "100%"}}>
+      <Typography variant="h5">Ask Your Question Here</Typography>
+      <div style={{width: "100%", display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <TextField
+            placeholder="Title"
+            fullWidth
+            margin="normal"
+            onChange={(e)=>setTitle(capitalizeWords(e.target.value))}
+            value={title}
+            autoCapitalize="on"
+            className={classes.title}
+          />
+      </div>
+      <div className={classes.editorContainer} style={{height: "60%", width: "100%"}}>
         <Editor 
           toolbar={{
             img: false, 
@@ -77,11 +82,11 @@ const NewPostScreen = () => {
           language="en"
         />
       </div>
-      <Button onClick={()=>createPost({
+      <Button onClick={()=>{createPost({
         title: title,
         body: post,
         poster: userId
-      })} className={classes.button} variant="contained" color="primary">
+      }); history.push("/home")}} className={classes.button} variant="contained" color="primary">
         Post
       </Button> 
     </Container>

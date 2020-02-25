@@ -2,8 +2,8 @@ import React, { useState, useMemo } from 'react'
 import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, ListItemIcon, makeStyles } from '@material-ui/core'
 import  { Menu, Search, Add, Home } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import { useLocation, useHistory, useParams } from 'react-router-dom'
-import { useStoreActions } from 'easy-peasy'
+import { useLocation, useHistory } from 'react-router-dom'
+import { useStoreActions, useStoreState } from 'easy-peasy'
 
 const useStyles = makeStyles((theme)=>({
   main: {
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme)=>({
     textAlign: "center"
   }
 }))
+
 export default function NavBar(props) {
   const classes = useStyles()
   const [drawerOpen, setDrawerOpen] = useState(false)

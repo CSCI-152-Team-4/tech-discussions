@@ -6,8 +6,6 @@ import HomeScreen from './HomeScreen'
 const MainNav = () => {
   return(
     <Switch>
-      <Route path="/home/:postID">
-      </Route>
       <Route path="/home">
         <HomeScreen/>
       </Route>
