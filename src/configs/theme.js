@@ -35,7 +35,7 @@ export function getTheme(theme){
         main: '#ff1744'
       },
       background: {
-        default: colors.white
+        default: colors.grey
       },
     },
     overrides: {
