@@ -51,11 +51,11 @@ export default function NavBar(props) {
       <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
         <div style={{width: "50%", display: 'flex', alignItems: 'center'}}>
           <IconButton color="inherit" className={classes.menu} onClick={()=>setDrawerOpen(true)}>
-            <Menu fontSize="large"/>
+            <Menu fontSize="large" color="inherit"/>
           </IconButton>
           {location.pathname !== "/home" && 
             <IconButton color="inherit" onClick={()=>history.goBack()}>
-              <ArrowBackIosIcon/>
+              <ArrowBackIosIcon color="inherit"/>
             </IconButton>
           }
           <Typography variant="h5" style={{marginLeft: '0.5rem'}}>{title}</Typography>
@@ -74,7 +74,7 @@ export default function NavBar(props) {
           <div className={classes.menuTop}>
             <Typography variant="h6" className={classes.menuTitle}>Menu</Typography>
             <IconButton className={classes.closeDrawer} onClick={()=>setDrawerOpen(false)}>
-              <ArrowBackIosIcon htmlColor="black"/>
+              <ArrowBackIosIcon color="inherit"/>
             </IconButton>
           </div>
           <List>

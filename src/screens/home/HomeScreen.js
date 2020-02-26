@@ -7,10 +7,6 @@ import usePosts from '../../hooks/usePosts'
 
 const useStyles = makeStyles((theme)=>({
   root: {
-    ['& > *']: {
-      marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(2)
-    },
     height: "100%",
     width: "100%",
     overflowY: "scroll",

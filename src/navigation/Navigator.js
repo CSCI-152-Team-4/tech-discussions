@@ -13,7 +13,7 @@ const Navigator = () => {
   const location = useLocation()
 
   const showNav = useMemo(
-    () => !["/login", "/signup", "/not-found", "/post/new"].includes(location.pathname),
+    () => !["/login", "/signup", "/not-found"].includes(location.pathname),
     [location.pathname]
   );
 
