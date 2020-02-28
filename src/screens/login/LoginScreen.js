@@ -15,19 +15,6 @@ import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import { useStoreState, useStoreActions } from "easy-peasy";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -104,6 +91,7 @@ export default function SignIn() {
               setCreds(({password})=>({password, email: e.target.value}))
               e.persist()
             }}
+            color="primary"
           />
           <TextField
             variant="outlined"
@@ -149,7 +137,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
+        <div>testing</div>
       </Box>
     </Container>
   );

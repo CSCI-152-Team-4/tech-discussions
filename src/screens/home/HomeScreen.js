@@ -23,7 +23,7 @@ const HomeScreen = () => {
     <>
     <Container className={classes.root} maxWidth={false} color="secondary">
       <List>
-        {posts.length && posts.map((post)=>(
+        {posts.length > 0 && posts.map((post)=>(
           <ListItem>
             <PostCard 
               key={post._id} 

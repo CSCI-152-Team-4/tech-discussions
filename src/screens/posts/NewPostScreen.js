@@ -14,8 +14,13 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   container: {
+    [theme.breakpoints.up('md')]: {
+      maxWidth: "70vw"
+    },
     height: "100%",
     width: "100vw",
+    marginLeft: 'auto',
+    marginRight: 'auto',
     backgroundColor: theme.palette.grey.main,
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1)
