@@ -101,7 +101,8 @@ const NewPostScreen = () => {
             createPost({
               title: title,
               body: post,
-              poster: userId
+              poster: userId,
+              tags: []
             });
             history.push("/home");
           }}
