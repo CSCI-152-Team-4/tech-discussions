@@ -47,18 +47,18 @@ const HomeScreen = () => {
     <>
       <Container className={classes.root} maxWidth={false} color="secondary">
         <List>
-          {posts.length > 0 &&
-            posts.map((post, index) => (
+          {Object.keys(posts).length > 0 &&
+            Object.keys(posts).map((id, index) => posts[id] && (
               <ListItem key={`li-${index}`}>
                 <PostCard
-                  key={post._id}
-                  views={post.views}
-                  votes={post.votes}
-                  answers={post.answers}
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                  handleClick={() => history.push(`/post/${post._id}`)}
+                  key={posts[id]._id}
+                  views={posts[id].views}
+                  votes={posts[id].votes}
+                  answers={posts[id].answers}
+                  title={posts[id].title}
+                  body={posts[id].body}
+                  tags={posts[id].tags}
+                  handleClick={() => history.push(`/post/${posts[id]._id}`)}
                 />
               </ListItem>
             ))}
