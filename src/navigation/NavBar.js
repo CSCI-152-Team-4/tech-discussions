@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { Drawer, AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, ListItemIcon, makeStyles } from '@material-ui/core'
-import  { Menu, Search, Add, Home } from '@material-ui/icons'
+import  { Menu, Search, Add, Home, ExitToApp, Settings, Email  } from '@material-ui/icons'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import { useLocation, useHistory } from 'react-router-dom'
 import { useStoreActions, useStoreState } from 'easy-peasy'
@@ -82,8 +82,12 @@ export default function NavBar(props) {
               <ListItemIcon><Home/></ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
+            <ListItem button key={"messages"} onClick={()=>{history.push("/messages"); setDrawerOpen(false)}}>
+              <ListItemIcon><Email/></ListItemIcon>
+              <ListItemText primary={"Messages"} />
+            </ListItem>
             <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
-              <ListItemIcon><Home/></ListItemIcon>
+              <ListItemIcon><ExitToApp/></ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
