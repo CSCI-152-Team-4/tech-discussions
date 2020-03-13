@@ -7,6 +7,7 @@ import usePosts from '../hooks/usePosts'
 import { useStoreState , useStoreActions} from 'easy-peasy'
 import Editor from "for-editor";
 import { sizing } from '@material-ui/system';
+//import changePass from '../../services/Authentication';
 
 
 const useStyles = makeStyles( (theme)=> ({
