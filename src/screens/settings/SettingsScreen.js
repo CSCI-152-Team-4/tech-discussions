@@ -7,7 +7,7 @@ import usePosts from '../hooks/usePosts'
 import { useStoreState , useStoreActions} from 'easy-peasy'
 import Editor from "for-editor";
 import { sizing } from '@material-ui/system';
-//import changePass from '../../services/Authentication';
+import AuthenticationService from '../../services/Authentication';
 
 
 const useStyles = makeStyles( (theme)=> ({
@@ -40,7 +40,7 @@ const userId = useStoreState(state => state.User.userid)
 const history = useHistory();
 const [passOne, setPassOne] = useState("");
 const [passTwo, setPassTwo] = useState("");
-const { changePass } = useStoreActions(({ User }) => User);
+
 
 return(
     <Container className={classes.root} maxWidth = {false} >
@@ -89,7 +89,7 @@ return(
           variant="contained"
           color="primary"
           onClick = {(newPass, oldPass, userId) => {
-              changePass(newPass, oldPass, userId)
+              AuthenticationService.changePass(newPass, oldPass, userId)
           }}
           >
           Confirm
