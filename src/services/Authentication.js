@@ -62,5 +62,5 @@ const signup = async (email, pass) => {
 }
 
 export default {
-  login, signup
+  login, signup,changePass
 }
