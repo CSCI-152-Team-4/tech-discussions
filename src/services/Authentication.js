@@ -1,16 +1,18 @@
 import Axios from 'axios'
 import constants from '../configs/constants'
 
-router.post('/changePass', async (req, res) => {
-const user = await Users.findById(req.body.id);
-if(user){
-  if(encryptPass(req.body.password) === user.oldPassword){
-    user.password = encryptPass(req.body.newPassword);
-    user.save();
-  }
+const changePass = async (newPass,oldPass,userId) => {
+  try{
+  let { data } = await Axios.post(`${constants.server_url}/users/changePass` , {
+  newPassword: newPass, 
+  oldPassword: oldPass,
+  userId: userId,
+})}
+
+catch(err){
+  console.log('err', err)
 }
 }
-)
 
 const login = async (email, pass) => {
   try{
