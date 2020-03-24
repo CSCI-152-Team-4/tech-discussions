@@ -74,7 +74,7 @@ export default function SignupScreen() {
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
         signup(creds)
-      else setErr("Must Use Fresno State Email")
+      else setErr("Must be a Fresno State email only")
     }
   }, [creds.email, creds.password, creds, signup])
 

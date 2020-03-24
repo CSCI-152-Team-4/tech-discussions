@@ -15,6 +15,19 @@ import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import { useStoreState, useStoreActions } from "easy-peasy";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © tech-discussions '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -61,7 +74,7 @@ export default function SignIn() {
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
         login(creds)
-      else setErr("Must Use Fresno State Email")
+      else setErr("Must be a Fresno State email only")
     }
   }, [creds.email, creds.password, creds, login])
 
@@ -137,7 +150,7 @@ export default function SignIn() {
         </form>
       </div>
       <Box mt={8}>
-        <div>testing</div>
+        <Copyright />
       </Box>
     </Container>
   );
