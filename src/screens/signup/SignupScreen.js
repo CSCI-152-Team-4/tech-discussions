@@ -18,12 +18,12 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {'Copyright © tech-discussions '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+        Website
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
@@ -91,6 +91,34 @@ export default function SignupScreen() {
         <form className={classes.form} noValidate>
           <Typography style={{textAlign: 'center', color: 'red'}}>{err}</Typography>
           <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                name="firstName"
+                autoComplete="fname"
+                onChange={(e)=>{
+                  setCreds(({firstName})=>({firstName, firstName: e.target.value}))
+                  e.persist()
+                }}
+            />
+          <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                onChange={(e)=>{
+                  setCreds(({lastName})=>({lastName, lastName: e.target.value}))
+                  e.persist()
+                }}
+              />
+          <TextField
             variant="outlined"
             margin="normal"
             required
@@ -137,7 +165,7 @@ export default function SignupScreen() {
           <Grid container style={{justifyContent: 'center', alignItems: 'center'}}>
             <Grid item xs={12} style={{textAlign: 'center', marginTop: '.5rem'}}>
               <Link onClick={()=>history.push('/login')} variant="body2">
-                Already have an account? Login here
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>
