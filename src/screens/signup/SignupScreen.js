@@ -95,6 +95,20 @@ export default function SignupScreen() {
                 margin="normal"
                 required
                 fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={(e)=>{
+                  setCreds(({username})=>({username, username: e.target.value}))
+                  e.persist()
+                }}
+            />
+          <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
                 id="firstName"
                 label="First Name"
                 name="firstName"

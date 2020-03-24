@@ -7,6 +7,8 @@ const stall = async (time=300) => { // stalling time to test thunks (mocks an ap
 }
 
 const initial = {
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
   username: "",
@@ -17,6 +19,8 @@ const initial = {
 }
 
 const userModel = persist({
+  firstName: "",
+  lastName: "",
   email: "",
   password: "",
   username: "",
