@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
-import PostCard from '../components/PostCard'
-import { Container, makeStyles, ListItem, List , Grid, Typography, responsiveFontSizes, Button} from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
-import usePosts from '../hooks/usePosts'
-import { useStoreState , useStoreActions} from 'easy-peasy'
+import { Container, makeStyles, ListItem, List , Grid, Typography, responsiveFontSizes, Button} from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import usePosts from '../../hooks/usePosts';
+import { useStoreState , useStoreActions} from 'easy-peasy';
 import Editor from "for-editor";
 import { sizing } from '@material-ui/system';
 import AuthenticationService from '../../services/Authentication';
-
 
 const useStyles = makeStyles( (theme)=> ({
     root: {
@@ -28,7 +26,10 @@ const useStyles = makeStyles( (theme)=> ({
         }
       },
         button:{
-          width: "60%"
+          width: "30%",
+          //color: 'Red',
+          //borderColor:'red',
+          //backgroundColor: 'red'
         }
       
 
@@ -36,11 +37,12 @@ const useStyles = makeStyles( (theme)=> ({
 
 const SettingScreen = () =>{
 const classes = useStyles();
-const userId = useStoreState(state => state.User.userid) 
+const userId = useStoreState(state => state.User.userId);
 const history = useHistory();
 const [passOne, setPassOne] = useState("");
 const [passTwo, setPassTwo] = useState("");
-
+const [passThree,setPassThree] = useState("");
+const [passFour,setPassFour] = useState("");
 
 return(
     <Container className={classes.root} maxWidth = {false} >
@@ -48,22 +50,30 @@ return(
         <Typography style= { {textAlign :'center',fontSize: 30}} >
             Account Information
         </Typography>
+        <Typography style = {{textAlign:'center'}}>
         <TextField
             variant="outlined"
             margin="normal"
+            textAlign='center'
             required
-            fullWidth
-            id="email"
+            //width = '180%'
+            id="oldPass"
             label="Current Password"
-            name="email"
+            name="oldPass"
             autoComplete="email"
             color="secondary"
+            onChange={(e)=>setPassThree(e.target.value)}
+            onChange={(e)=>setPassFour(e.target.value)}
+            
+            
           />
+          </Typography>
+          <Typography style = {{textAlign: 'center'}}>
           <TextField
             variant="outlined"
             margin="normal"
             required
-            fullWidth
+            //fullWidth
             id="email"
             label="New Password"
             name="email"
@@ -71,26 +81,34 @@ return(
             color={passOne === passTwo ? "secondary" : "primary"}
             onChange={(e)=>setPassOne(e.target.value)}
           />
+          </Typography>
+          <Typography style = {{textAlign: 'center'}}>
           <TextField
             variant="outlined"
             margin="normal"
             required
-            fullWidth
+            //fullWidth
             id="email"
             label="Confirm Password"
             name="email"
             autoComplete="email"
             color={passOne === passTwo ? "secondary" : "primary"}
             onChange={(e)=>setPassTwo(e.target.value)}
+            
           />
-          <Grid item container xs={12} justify="center">
-          <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          onClick = {(newPass, oldPass, userId) => {
-              AuthenticationService.changePass(newPass, oldPass, userId)
-          }}
+
+          </Typography >
+          <Grid item container xs={12} justify="center" >
+          <Button 
+          
+          onClick = {() => {
+              AuthenticationService.changePass(passTwo, passFour, userId);
+              history.push("/home");
+            }
+        }
+        className = {classes.button}
+        variant = 'contained'
+        color = 'primary'
           >
           Confirm
           </Button>
