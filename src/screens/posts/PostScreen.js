@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-    '& > *': {
+    "& > *": {
       marginTop: theme.spacing(1)
     },
     marginBottom: theme.spacing(1)
@@ -50,10 +50,11 @@ const PostScreen = () => {
   const [comment, setComment] = useState("");
   const replyRef = React.useRef(null);
 
+  const fetchComments = async () => {
+    if (postId) setComments(await getComments(postId));
+  };
+
   useEffect(() => {
-    const fetchComments = async () => {
-      if (postId) setComments(await getComments(postId));
-    };
     fetchComments();
   }, [postId]);
 
@@ -67,8 +68,10 @@ const PostScreen = () => {
   }, [comments.length]);
 
   const submit = async () => {
-    if (postId.length > 0 && userId && comment.length > 0)
+    if (postId.length > 0 && userId && comment.length > 0) {
       await addComment({ postId, userId, comment });
+      await fetchComments(postId)
+    }
   };
 
   return post ? (

@@ -24,7 +24,6 @@ const getComments = async postId => {
     let { data } = await Axios.get(
       `${constants.server_url}/comments/byPost/?postId=${postId}`
     );
-    console.log("data", data);
     if (data.comments.length > 0) return data.comments;
     else return [];
   } catch (err) {
