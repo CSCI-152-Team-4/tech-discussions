@@ -1,6 +1,14 @@
 import Axios from 'axios'
 import constants from '../configs/constants'
 
+const changePass = async (newPass, oldPass, userId) => {
+  let { data } = await Axios.post(`${constants.server_url}/users/changePass`, {
+    newPassword: newPass,
+    oldPassword: oldPass,
+    userId: userId
+  })  
+}
+
 const login = async (email, pass) => {
   try{
     let { data } = await Axios.post(`${constants.server_url}/users/login`, {

@@ -60,6 +60,18 @@ const NewPostScreen = () => {
   const userId = useStoreState(state => state.User.userId);
   const history = useHistory();
 
+  const makePost = () => {
+    if(post.length > 0 && title.length > 0){
+      createPost({
+        title: title,
+        body: post,
+        poster: userId,
+        tags: []
+      });
+      history.push("/home");
+    }
+  }
+
   return (
     <Grid container direction="row" alignItems="flex-start" justify="flex-start" className={classes.container}>
       <Grid item xs={12}>
@@ -97,15 +109,7 @@ const NewPostScreen = () => {
       </Grid>
       <Grid item container xs={12} justify="center">
         <Button
-          onClick={() => {
-            createPost({
-              title: title,
-              body: post,
-              poster: userId,
-              tags: []
-            });
-            history.push("/home");
-          }}
+          onClick={makePost}
           className={classes.button}
           variant="contained"
           color="primary"

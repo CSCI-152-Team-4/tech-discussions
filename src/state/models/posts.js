@@ -21,16 +21,28 @@ const postsModel = persist(
         state.posts[post._id] = post;
       });
     }),
-    getPosts: thunk(async (actions, payload) => {
-      let posts = await PostService.getPosts(10);
-      actions.setPosts(posts);
-    }),
     createPost: thunk(async (actions, payload) => {
       try {
         await PostService.createPost(payload);
         actions.storePost(payload);
       } catch (err) {
         console.log("err", err);
+      }
+    }),
+    getComments: thunk(async (actions, postId) => {
+      try {
+        const comments = await PostService.getComments(postId);
+        return comments;
+      } catch (err) {
+        console.log("err", err);
+        return [];
+      }
+    }),
+    addComment: thunk(async (actions, { postId, userId, comment }) => {
+      try {
+        await PostService.addComment(postId, userId, comment);
+      } catch (err) {
+        console.log('err', err)
       }
     })
   },
