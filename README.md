@@ -1,4 +1,5 @@
-Dependencies are installed using yarn
-If you don't have yarn installed, here are the installation instructions: https://classic.yarnpkg.com/en/docs/install/#mac-stable
+## public folder contains root html and setup information for the serviceworker
 
-After yarn is installed, just cd into the directory and run yarn to download dependencies
+## src folder contains our application. All screens, navigation, logic, data, styling and everything else is in here.
+
+## package.json lists dependencies

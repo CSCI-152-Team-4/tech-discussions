@@ -24,7 +24,7 @@ const Navigator = () => {
             <NavBar/> 
           </div>
         )}
-      <div style={{flex: 1, height: "90%"}}>
+      <div style={{flex: 1, height: "90%", maxHeight: '90%', overflowY: 'scroll'}}>
         <Switch>
           {Routes.map(({ Component, path, locked }, index) => {
             return locked ? (
