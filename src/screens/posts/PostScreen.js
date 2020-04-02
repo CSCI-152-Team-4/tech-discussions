@@ -130,10 +130,7 @@ const PostScreen = () => {
                   className="comment-container"
                   preview
                   value={
-                    c.body +
-                    `<div align="right">${"\n\nPosted by: "}${
-                      c.commenter.email
-                    }</div>`
+                    `${c.body + "\n"}<div align="right">${"\n\nPosted by: "}${c.commenter.email}</div>`
                   }
                   language="en"
                   height={"auto"}
