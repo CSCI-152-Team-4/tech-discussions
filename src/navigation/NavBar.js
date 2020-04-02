@@ -80,9 +80,9 @@ export default function NavBar(props) {
               <ArrowBackIosIcon color="inherit" />
             </IconButton>
           )}
-          <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
+          {!showSearch && <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
             {title}
-          </Typography>
+          </Typography>}
         </div>
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
