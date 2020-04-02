@@ -6,16 +6,37 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
+import Paper from '@material-ui/core/Paper';
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import { useStoreState, useStoreActions } from "easy-peasy";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © tech-discussions '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const useStyles = makeStyles(theme => ({
+  root: {
+    height: '100vh',
+  },
+  image: {
+    backgroundImage: 'url(https://www.columnit.com/images/blog/new-large/Overcoming-IT-Project-Management-Challenges.jpg)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -61,13 +82,15 @@ export default function SignIn() {
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
         login(creds)
-      else setErr("Must Use Fresno State Email")
+      else setErr("Email must be a Fresno State account only")
     }
   }, [creds.email, creds.password, creds, login])
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Grid container component="main" maxWidth="xs" className = {classes.root}>
       <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -134,11 +157,12 @@ export default function SignIn() {
               </Link>
             </Grid>
           </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <div>testing</div>
-      </Box>
-    </Container>
+          <Box mt={5}>
+              <Copyright />
+            </Box>
+          </form>
+        </div>
+      </Grid>
+    </Grid>
   );
 }

@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import constants from '../configs/constants'
 
+
 const changePass = async (newPass,oldPass,userId) => {
   try{
   let { data } = await Axios.post(`${constants.server_url}/users/changePass` , {
@@ -11,8 +12,7 @@ const changePass = async (newPass,oldPass,userId) => {
 
 catch(err){
   console.log('err', err)
-}
-}
+}}
 
 const login = async (email, pass) => {
   try{
@@ -41,7 +41,8 @@ const login = async (email, pass) => {
 const signup = async (email, pass) => {
   try{
     let { data } = await Axios.post(`${constants.server_url}/users/signup`, {
-      email: email, password: pass
+      email: email, 
+      password: pass
     })
     if(!data.userExists && data.userCreated) return {
       status: "success",
