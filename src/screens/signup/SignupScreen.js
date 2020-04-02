@@ -19,9 +19,6 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © tech-discussions '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Website
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -34,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
+  },  
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main
@@ -74,7 +71,7 @@ export default function SignupScreen() {
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
         signup(creds)
-      else setErr("Must be a Fresno State email only")
+      else setErr("Email must be a Fresno State account only")
     }
   }, [creds.email, creds.password, creds, signup])
 
@@ -113,6 +110,7 @@ export default function SignupScreen() {
                 label="First Name"
                 name="firstName"
                 autoComplete="fname"
+                autoFocus
                 onChange={(e)=>{
                   setCreds(({firstName})=>({firstName, firstName: e.target.value}))
                   e.persist()
@@ -161,10 +159,6 @@ export default function SignupScreen() {
               setCreds(({email})=>({email, password: e.target.value}))
               e.persist()
             }}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             type="submit"
