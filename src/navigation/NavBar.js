@@ -12,7 +12,7 @@ import {
   makeStyles,
   TextField
 } from "@material-ui/core";
-import { Menu, Search, Add, Home } from "@material-ui/icons";
+import { Menu, Search, Add, Home, Settings, ExitToApp } from "@material-ui/icons";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useLocation, useHistory } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
