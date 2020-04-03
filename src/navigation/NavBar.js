@@ -12,10 +12,11 @@ import {
   makeStyles,
   TextField
 } from "@material-ui/core";
-import { Menu, Search, Add, Home } from "@material-ui/icons";
+import { Menu, Search, Add, Home, Settings, ExitToApp } from "@material-ui/icons";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useLocation, useHistory } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
+
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -127,17 +128,14 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
-            <ListItem
-              button
-              key={"logout"}
-              onClick={() => {
-                logout();
-                setDrawerOpen(false);
-              }}
-            >
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
+
+            <ListItem button key={"settings"} onClick={()=>{history.push("/settings"); setDrawerOpen(false)}}>
+              <ListItemIcon><Settings/></ListItemIcon>
+              <ListItemText primary={"Settings"} />
+            </ListItem>
+
+            <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
+              <ListItemIcon><ExitToApp/></ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
