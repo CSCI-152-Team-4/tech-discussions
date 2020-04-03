@@ -133,19 +133,9 @@ export default function NavBar(props) {
               <ListItemIcon><Settings/></ListItemIcon>
               <ListItemText primary={"Settings"} />
             </ListItem>
+
             <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
               <ListItemIcon><ExitToApp/></ListItemIcon>
-            <ListItem
-              button
-              key={"logout"}
-              onClick={() => {
-                logout();
-                setDrawerOpen(false);
-              }}
-            >
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
