@@ -6,9 +6,11 @@ import {
   makeStyles,
   Typography
 } from "@material-ui/core";
-import { useStoreState, useStoreActions } from "easy-peasy";
+import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
 import MdEditor from "for-editor";
+import PostService from '../../services/Posts'
+import { useSocketState } from "../../state";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,23 +42,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostScreen = () => {
-  const { posts } = useStoreState(state => state.Posts);
+  const { posts } = useSocketState();
   const userId = useStoreState(state => state.User.userId);
-  const { getComments, addComment } = useStoreActions(actions => actions.Posts);
+  // const { addComment } = useStoreActions(actions => actions.Posts);
   const { postId } = useParams();
-  const [post] = useState(posts[postId]);
   const classes = useStyles();
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [post, setPost] = useState(posts[postId])
   const replyRef = React.useRef(null);
 
   const fetchComments = async () => {
-    if (postId) setComments(await getComments(postId));
+      setComments(await PostService.getComments(postId));
   };
 
   useEffect(() => {
-    fetchComments();
-  }, [postId]);
+    if(posts && postId){
+      fetchComments();
+    }
+  }, [postId, posts]);
 
   React.useLayoutEffect(() => {
     const els = document.getElementsByClassName(
@@ -69,7 +73,7 @@ const PostScreen = () => {
 
   const submit = async () => {
     if (postId.length > 0 && userId && comment.length > 0) {
-      await addComment({ postId, userId, comment });
+      await PostService.addComment(postId, userId, comment)
       await fetchComments(postId)
     }
   };
