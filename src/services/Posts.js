@@ -19,6 +19,16 @@ const getPosts = async limit => {
   }
 };
 
+const getOnePost = async postId => {
+  try {
+    let { data } = await Axios.get(`${constants.server_url}/posts/${postId}`);
+    return data;
+  } catch (err) {
+    console.log("err getting posts", err);
+    return [];
+  }
+};
+
 const getComments = async postId => {
   try {
     let { data } = await Axios.get(
@@ -52,5 +62,6 @@ export default {
   createPost,
   getPosts,
   getComments,
-  addComment
+  addComment,
+  getOnePost
 };

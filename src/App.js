@@ -3,7 +3,7 @@ import Navigator from './navigation/Navigator'
 import { StoreProvider } from 'easy-peasy'
 import {ThemeProvider} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
-import store from './state';
+import store, { SocketProvider } from './state';
 import { getTheme } from './configs/theme'
 
 import './App.css'
@@ -17,12 +17,14 @@ const App = () => {
 
   return (
     <StoreProvider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app-div">
-          <Navigator/>
-        </div>
-      </ThemeProvider>
+      <SocketProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app-div">
+            <Navigator/>
+          </div>
+        </ThemeProvider>
+      </SocketProvider>
     </StoreProvider>
   );
 }
