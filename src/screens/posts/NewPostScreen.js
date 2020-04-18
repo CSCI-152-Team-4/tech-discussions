@@ -11,6 +11,7 @@ import {
 import Editor from "for-editor";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useHistory } from "react-router-dom";
+import PostService from '../../services/Posts'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -56,18 +57,17 @@ const NewPostScreen = () => {
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
   const [split, setSplit] = useState(false);
-  const createPost = useStoreActions(actions => actions.Posts.createPost);
   const userId = useStoreState(state => state.User.userId);
   const history = useHistory();
 
   const makePost = () => {
     if(post.length > 0 && title.length > 0){
-      createPost({
+      PostService.createPost({
         title: title,
         body: post,
         poster: userId,
         tags: []
-      });
+      })
       history.push("/home");
     }
   }

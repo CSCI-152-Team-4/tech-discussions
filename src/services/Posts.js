@@ -21,7 +21,7 @@ const getPosts = async limit => {
 
 const getOnePost = async postId => {
   try {
-    let { data } = await Axios.get(`${constants.server_url}/posts/${postId}`);
+    let { data } = await Axios.get(`${constants.server_url}/posts/one/${postId}`);
     return data;
   } catch (err) {
     console.log("err getting posts", err);

@@ -4,7 +4,7 @@ import PostCard from "../../components/PostCard";
 import { Container, makeStyles, ListItem, List } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { useStoreState, useStoreActions } from "easy-peasy";
-import usePosts from '../../hooks/usePosts'
+import {useSocketState} from '../../state'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,8 +19,7 @@ const useStyles = makeStyles(theme => ({
 const HomeScreen = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { search } = useStoreState(state => state.Posts);
-  const posts = usePosts()
+  const {posts} = useSocketState()
   // const [posts, setPosts] = React.useState([]);
 
   // useEffect(() => {
