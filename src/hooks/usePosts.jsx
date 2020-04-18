@@ -14,7 +14,7 @@ const convertArrayToObject = (array, key) => {
 
 const usePosts = () => {
   const [posts, setPosts] = useState({});
-  const [socket,] = useSocketState()
+  const {socket} = useSocketState()
 
   const getPosts = async () => {
     const p = await PostService.getPosts(20);
@@ -30,14 +30,14 @@ const usePosts = () => {
       const data = await PostService.getOnePost(newPost)
       if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
     })
-    socket.on("new-post", (newPost) => {
+    socket.on("new-post", async (newPost) => {
       const data = await PostService.getOnePost(newPost)
-      if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
+      if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
     })
     socket.on("delete-post", (deletedPost) => {
-        setDBs((prevPosts)=>{
+        setPosts((prevPosts)=>{
           const { [deletedPost]: _, ...rest } = prevPosts
-          setPosts(rest)
+          return rest
         })
     })
   }, [socket])

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { createStore } from 'easy-peasy'
-import useSocket from '../hooks/useSocket'
+
 
 import StoreModel from './models'
 
@@ -8,12 +8,12 @@ const store = createStore(StoreModel, {
   name: 'TD-State'
 });
 
-const SocketContext = createContext();
+export const SocketContext = createContext();
 
-export const SocketProvider = ({ children }) => {
-  const socket = useSocket()
+export const SocketProvider = ({ children, socket }) => {
+  console.log(socket)
   return (
-    <SocketContext.Provider value={socket}>
+    <SocketContext.Provider value={{socket: socket}}>
       {children}
     </SocketContext.Provider>
   )

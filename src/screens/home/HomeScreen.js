@@ -20,8 +20,8 @@ const HomeScreen = () => {
   const classes = useStyles();
   const history = useHistory();
   const { search } = useStoreState(state => state.Posts);
-  const { posts } = usePosts()
- // const [posts, setPosts] = React.useState([]);
+  const posts = usePosts()
+  // const [posts, setPosts] = React.useState([]);
 
   // useEffect(() => {
   //   setPosts(posts);
@@ -43,7 +43,7 @@ const HomeScreen = () => {
     <>
       <Container className={classes.root} maxWidth={false} color="secondary">
         <List>
-          {Object.keys(posts).length > 0 &&
+          {posts && Object.keys(posts).length > 0 &&
             Object.keys(posts).map((id, index) => posts[id] && (
               <ListItem key={`li-${index}`}>
                 <PostCard

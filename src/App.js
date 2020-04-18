@@ -5,6 +5,8 @@ import {ThemeProvider} from '@material-ui/core/styles'
 import {CssBaseline} from '@material-ui/core'
 import store, { SocketProvider } from './state';
 import { getTheme } from './configs/theme'
+import useSocket from './hooks/useSocket'
+import constants from './configs/constants'
 
 import './App.css'
 
@@ -15,9 +17,11 @@ const App = () => {
     return getTheme(darkMode ? 'dark' : 'light')
   },[darkMode])
 
+  const socket = useSocket(constants.server_url)
+
   return (
     <StoreProvider store={store}>
-      <SocketProvider>
+      <SocketProvider socket={socket}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app-div">
