@@ -52,7 +52,7 @@ export default function NavBar(props) {
   const location = useLocation();
   const history = useHistory();
   const logout = useStoreActions(actions => actions.User.logout);
-  // const setSearch = useStoreActions(actions=>actions.Posts.setSearch)
+  const [search, setSearch] = useState("")
 
   const title = useMemo(() => {
     switch (location.pathname) {
@@ -88,10 +88,10 @@ export default function NavBar(props) {
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
-          {/* {showSearch && <TextField placeholder="search by title..." className={classes.search} fullWidth autoFocus onChange={(e)=>setSearch(e.target.value)} />}
+          {showSearch && <TextField placeholder="search by title..." className={classes.search} fullWidth autoFocus onChange={(e)=>setSearch(e.target.value)} />}
           <IconButton color="inherit" onClick={() => setShowSearch(!showSearch)}>
             <Search fontSize="large" />
-          </IconButton> */}
+          </IconButton>
           <IconButton
             style={{ marginRight: ".5rem" }}
             color="inherit"
