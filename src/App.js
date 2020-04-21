@@ -18,11 +18,11 @@ const App = () => {
   },[darkMode])
 
   console.log(process.env.REACT_APP_SERVER)
-  const socket = useSocket(constants.server_url)
+  const postSocket = useSocket(`${constants.server_url}/posts`)
 
   return (
     <StoreProvider store={store}>
-      <SocketProvider socket={socket}>
+      <SocketProvider socket={postSocket}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app-div">
