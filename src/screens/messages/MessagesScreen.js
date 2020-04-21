@@ -41,7 +41,7 @@ const MessagesScreen = () => {
   return (
   <Container className ={classes.root}>
 
-        <Grid container wrap="nowrap" spacing={0} classname={classes.rot}>
+        <Grid container wrap="nowrap" spacing={0} className={classes.rot}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar>R</Avatar>
@@ -51,7 +51,7 @@ const MessagesScreen = () => {
               secondary={
                 <React.Fragment>
                   <Typography
-                    //component="span"
+                    component="span"
                     variant="body2"
                     className={classes.inline}
                     color="textPrimary"
