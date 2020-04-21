@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
-import NavBar from './NavBar'
+import NavBar from "./NavBar";
+import { Grid } from "@material-ui/core";
 
 const Navigator = () => {
   const rehydrated = useStoreRehydrated();
   const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
-  const location = useLocation()
+  const location = useLocation();
 
   const showNav = useMemo(
     () => !["/login", "/signup", "/not-found"].includes(location.pathname),
@@ -18,43 +19,37 @@ const Navigator = () => {
   );
 
   return rehydrated ? (
-    <div style={{height: "100vh", display: "flex", flexDirection: "column"}}>
-        { showNav && (
-          <div style={{flex: .1}}>
-            <NavBar/> 
-          </div>
-        )}
-      <div style={{flex: 1, height: "90%"}}>
-        <Switch>
-          {Routes.map(({ Component, path, locked }, index) => {
-            return locked ? (
-              <PrivateRoute
-                path={path}
-                Component={Component}
-                key={`p-index-${index}`}
-                loggedIn={loggedIn}
-              />
-            ) : (
-              <Route
-                exact
-                path={path}
-                key={`r-index-${index}`}
-                render={props => <Component {...props} />}
-              />
-            );
-          })}
-          <Route
-            exact
-            path="/"
-            render={props => <Redirect {...props} to="/home" />}
-          />
-          <Route exact path="/not-found">
-            <div>not found</div>
-          </Route>
-          <Route render={()=><Redirect to="not-found"/>} />
-        </Switch>
-      </div>
-    </div>
+    <Grid container>
+      {showNav && <NavBar />}
+      <Switch>
+        {Routes.map(({ Component, path, locked }, index) => {
+          return locked ? (
+            <PrivateRoute
+              path={path}
+              Component={Component}
+              key={`p-index-${index}`}
+              loggedIn={loggedIn}
+            />
+          ) : (
+            <Route
+              exact
+              path={path}
+              key={`r-index-${index}`}
+              render={props => <Component {...props} />}
+            />
+          );
+        })}
+        <Route
+          exact
+          path="/"
+          render={props => <Redirect {...props} to="/home" />}
+        />
+        <Route exact path="/not-found">
+          <div>not found</div>
+        </Route>
+        <Route render={() => <Redirect to="not-found" />} />
+      </Switch>
+    </Grid>
   ) : (
     <div>loading state...</div>
   );

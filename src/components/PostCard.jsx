@@ -44,8 +44,8 @@ export default function PostCard({handleClick, views, answers, votes, title, tag
         </div>
         <Typography className={classes.title}>{title}</Typography>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          { tags.length > 0 ?
-            tags.map((tag)=><Chip color="primary" label={tag} className={classes.tag}/>)
+          { tags && tags.length > 0 ?
+            tags.map((tag, i)=><Chip key={`chip-${i}`}color="primary" label={tag} className={classes.tag}/>)
               :
             <Typography>No tags</Typography>
           }

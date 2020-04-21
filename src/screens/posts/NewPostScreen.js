@@ -11,6 +11,7 @@ import {
 import Editor from "for-editor";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useHistory } from "react-router-dom";
+import PostService from '../../services/Posts'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -56,9 +57,20 @@ const NewPostScreen = () => {
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
   const [split, setSplit] = useState(false);
-  const createPost = useStoreActions(actions => actions.Posts.createPost);
   const userId = useStoreState(state => state.User.userId);
   const history = useHistory();
+
+  const makePost = () => {
+    if(post.length > 0 && title.length > 0){
+      PostService.createPost({
+        title: title,
+        body: post,
+        poster: userId,
+        tags: []
+      })
+      history.push("/home");
+    }
+  }
 
   return (
     <Grid container direction="row" alignItems="flex-start" justify="flex-start" className={classes.container}>
@@ -97,14 +109,7 @@ const NewPostScreen = () => {
       </Grid>
       <Grid item container xs={12} justify="center">
         <Button
-          onClick={() => {
-            createPost({
-              title: title,
-              body: post,
-              poster: userId
-            });
-            history.push("/home");
-          }}
+          onClick={makePost}
           className={classes.button}
           variant="contained"
           color="primary"
