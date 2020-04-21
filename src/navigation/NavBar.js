@@ -10,9 +10,11 @@ import {
   ListItemText,
   ListItemIcon,
   makeStyles,
-  TextField
+  TextField,
+  Badge,
+  badgeContent
 } from "@material-ui/core";
-import { Menu, Search, Add, Home, Settings, ExitToApp } from "@material-ui/icons";
+import { Menu, Search, Add, Home, Settings, ExitToApp, Email} from "@material-ui/icons";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useLocation, useHistory } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
@@ -127,6 +129,11 @@ export default function NavBar(props) {
                 <Home />
               </ListItemIcon>
               <ListItemText primary={"Home"} />
+            </ListItem>
+            
+            <ListItem button key={"messages"} onClick={()=>{history.push("/messages"); setDrawerOpen(false)}}>
+              <ListItemIcon> <Badge badgeContent={4} color="error"> </Badge> <Email/> </ListItemIcon>
+              <ListItemText primary={"Messages"} />
             </ListItem>
 
             <ListItem button key={"settings"} onClick={()=>{history.push("/settings"); setDrawerOpen(false)}}>

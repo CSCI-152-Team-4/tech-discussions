@@ -1,10 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import MessagesScreen from './MessagesScreen'
+import MessageScreen from './MessageScreen'
 
 const MessagesNav = () => {
-  return(
+  return (
     <Switch>
+      <Route path="/messages/message">
+        <MessageScreen/>
+      </Route>
       <Route path="/messages">
         <MessagesScreen/>
       </Route>
