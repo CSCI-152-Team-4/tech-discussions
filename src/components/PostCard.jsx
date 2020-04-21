@@ -38,8 +38,8 @@ export default function PostCard({handleClick, views, answers, votes, title, tag
     <Card className={classes.card} onClick={handleClick}>
       <CardContent className={classes.content}>
         <div style={{height: "20%", width: "70%", display: 'flex', flexDirection: "row", justifyContent: "flex-start", paddingTop: ".5rem"}}>
-          <Typography className={classes.stat}>{views ? Object.keys(views).length : 0} Views</Typography>
-          <Typography className={classes.stat}>{answers} Answers</Typography>
+          <Typography className={classes.stat}>{views ? Object.keys(views).length : 0} Views | </Typography>
+          <Typography className={classes.stat}>{answers} Answers | </Typography>
           <Typography className={classes.stat}>{votes} Votes</Typography>
         </div>
         <Typography className={classes.title}>{title}</Typography>
