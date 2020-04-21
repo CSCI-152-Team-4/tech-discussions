@@ -14,6 +14,7 @@ const convertArrayToObject = (array, key) => {
 const usePosts = (_socket) => {
   const [posts, setPosts] = useState({});
   const socket = React.useRef(_socket).current
+
   const getPosts = async () => {
     const p = await PostService.getPosts(20);
     setPosts(convertArrayToObject(p, "_id"));
@@ -35,10 +36,10 @@ const usePosts = (_socket) => {
         if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
       })
       socket.on("delete-post", (deletedPost) => {
-          setPosts((prevPosts)=>{
-            const { [deletedPost]: _, ...rest } = prevPosts
-            return rest
-          })
+        setPosts((prevPosts)=>{
+          const { [deletedPost]: deleted, ...rest } = prevPosts
+          return rest
+        })
       })
     }
     return () => {
