@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PostService from "../services/Posts";
-import useSocket from "./useSocket";
-import constants from '../configs/constants'
-import io from 'socket.io-client'
 
 const convertArrayToObject = (array, key) => {
   const initialValue = {};
@@ -14,9 +11,9 @@ const convertArrayToObject = (array, key) => {
   }, initialValue);
 };
 
-const usePosts = (socket) => {
+const usePosts = (_socket) => {
   const [posts, setPosts] = useState({});
-
+  const socket = React.useRef(_socket).current
   const getPosts = async () => {
     const p = await PostService.getPosts(20);
     setPosts(convertArrayToObject(p, "_id"));
@@ -27,20 +24,28 @@ const usePosts = (socket) => {
   }, []);
 
   useEffect(()=>{
-    socket.on("update-post", async (newPost) => {
-      const data = await PostService.getOnePost(newPost)
-      if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
-    })
-    socket.on("new-post", async (newPost) => {
-      const data = await PostService.getOnePost(newPost)
-      if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
-    })
-    socket.on("delete-post", (deletedPost) => {
-        setPosts((prevPosts)=>{
-          const { [deletedPost]: _, ...rest } = prevPosts
-          return rest
-        })
-    })
+    if(socket){
+      socket.on("update-post", async (newPost) => {
+        const data = await PostService.getOnePost(newPost)
+        if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
+      })
+      socket.on("new-post", async (newPost) => {
+        console.log("new post", newPost)
+        const data = await PostService.getOnePost(newPost)
+        if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
+      })
+      socket.on("delete-post", (deletedPost) => {
+          setPosts((prevPosts)=>{
+            const { [deletedPost]: _, ...rest } = prevPosts
+            return rest
+          })
+      })
+    }
+    return () => {
+      socket.off("update-post")
+      socket.off("new-post")
+      socket.off("delete-post")
+    }
   }, [socket])
 
   return posts;
