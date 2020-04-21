@@ -18,12 +18,9 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+      {'Copyright © tech-discussions '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
@@ -34,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
+  },  
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main
@@ -74,7 +71,7 @@ export default function SignupScreen() {
     if(creds.email.length > 0 && creds.password.length > 0){
       if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
         signup(creds)
-      else setErr("Must Use Fresno State Email")
+      else setErr("Email must be a Fresno State account only")
     }
   }, [creds.email, creds.password, creds, signup])
 
@@ -90,6 +87,49 @@ export default function SignupScreen() {
         </Typography>
         <form className={classes.form} noValidate>
           <Typography style={{textAlign: 'center', color: 'red'}}>{err}</Typography>
+          <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={(e)=>{
+                  setCreds(({username})=>({username, username: e.target.value}))
+                  e.persist()
+                }}
+            />
+          <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                name="firstName"
+                autoComplete="fname"
+                autoFocus
+                onChange={(e)=>{
+                  setCreds(({firstName})=>({firstName, firstName: e.target.value}))
+                  e.persist()
+                }}
+            />
+          <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                onChange={(e)=>{
+                  setCreds(({lastName})=>({lastName, lastName: e.target.value}))
+                  e.persist()
+                }}
+              />
           <TextField
             variant="outlined"
             margin="normal"
@@ -120,10 +160,6 @@ export default function SignupScreen() {
               e.persist()
             }}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -137,7 +173,7 @@ export default function SignupScreen() {
           <Grid container style={{justifyContent: 'center', alignItems: 'center'}}>
             <Grid item xs={12} style={{textAlign: 'center', marginTop: '.5rem'}}>
               <Link onClick={()=>history.push('/login')} variant="body2">
-                Already have an account? Login here
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>

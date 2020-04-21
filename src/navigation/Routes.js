@@ -1,8 +1,7 @@
 import Screens from "../screens";
 import MainNav from "../screens/home/MainNav";
 import PostNav from '../screens/posts/PostNav';
-import MessagesNav from '../screens/messages/MessagesNav';
-
+import SettingsNav from '../screens/settings/SettingsNav';
 
 const Routes = [
   {
@@ -24,9 +23,9 @@ const Routes = [
     locked: false
   },
   {
-    Component: MessagesNav,
-    name: "Messages",
-    path: "/messages",
+    Component: SettingsNav,
+    name: "Settings",
+    path: "/settings",
     locked: true
   },
   {

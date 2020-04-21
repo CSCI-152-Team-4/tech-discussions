@@ -1,0 +1,1 @@
+### This folder contains constants that will be needed throughout the app such as theme and server url
