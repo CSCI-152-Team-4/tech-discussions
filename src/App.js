@@ -17,7 +17,6 @@ const App = () => {
     return getTheme(darkMode ? 'dark' : 'light')
   },[darkMode])
 
-  console.log(process.env.REACT_APP_SERVER)
   const postSocket = useSocket(constants.server_url)
 
   return (

@@ -31,7 +31,6 @@ const usePosts = (_socket) => {
         if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
       })
       socket.on("new-post", async (newPost) => {
-        console.log("new post", newPost)
         const data = await PostService.getOnePost(newPost)
         if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
       })
