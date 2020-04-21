@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostService from "../services/Posts";
 import useSocket from "./useSocket";
 import constants from '../configs/constants'
+import io from 'socket.io-client'
 
 const convertArrayToObject = (array, key) => {
   const initialValue = {};
@@ -13,9 +14,8 @@ const convertArrayToObject = (array, key) => {
   }, initialValue);
 };
 
-const usePosts = () => {
+const usePosts = (socket) => {
   const [posts, setPosts] = useState({});
-  const socket = useSocket(constants.server_url)
 
   const getPosts = async () => {
     const p = await PostService.getPosts(20);

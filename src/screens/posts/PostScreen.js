@@ -53,12 +53,13 @@ const PostScreen = () => {
   const replyRef = React.useRef(null);
 
   const fetchComments = async () => {
-      setComments(await PostService.getComments(postId));
+    setComments(await PostService.getComments(postId));
   };
 
   useEffect(() => {
     if(posts && postId){
       fetchComments();
+      PostService.viewPost(postId, userId)
     }
   }, [postId, posts]);
 

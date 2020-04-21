@@ -19,6 +19,14 @@ const getPosts = async limit => {
   }
 };
 
+const viewPost = async (postId, userId) => {
+  try {
+     let { data } = await Axios.put(`${constants.server_url}/posts/view/${postId}`, { userId: userId })
+  } catch(err) {
+    console.log('err', err)
+  }
+}
+
 const getOnePost = async postId => {
   try {
     let { data } = await Axios.get(`${constants.server_url}/posts/one/${postId}`);
@@ -63,5 +71,6 @@ export default {
   getPosts,
   getComments,
   addComment,
-  getOnePost
+  getOnePost,
+  viewPost
 };
