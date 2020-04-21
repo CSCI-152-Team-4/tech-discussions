@@ -57,11 +57,11 @@ const PostScreen = () => {
   };
 
   useEffect(() => {
-    if(posts && postId){
+    if(posts && postId && userId){
       fetchComments();
       PostService.viewPost(postId, userId)
     }
-  }, [postId, posts]);
+  }, [postId, posts, userId]);
 
   React.useLayoutEffect(() => {
     const els = document.getElementsByClassName(
@@ -76,8 +76,13 @@ const PostScreen = () => {
     if (postId.length > 0 && userId && comment.length > 0) {
       await PostService.addComment(postId, userId, comment)
       await fetchComments(postId)
+      setComment("")
     }
   };
+
+  const upvote = async () => {
+    await PostService.upvotePost(postId, userId)
+  }
 
   return post ? (
     <Container className={classes.root}>
@@ -93,6 +98,9 @@ const PostScreen = () => {
               language="en"
             />
           </div>
+        </Grid>
+        <Grid container item xs={12} justify="center" alignItems="center">
+          <Button variant="contained" onClick={()=>upvote()}>Upvote</Button>
         </Grid>
         <Grid className={classes.marginLeft}>
           <Typography>Reply</Typography>
