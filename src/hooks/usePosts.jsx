@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PostService from "../services/Posts";
-import useSocket from "./useSocket";
-import constants from '../configs/constants'
 
 const convertArrayToObject = (array, key) => {
   const initialValue = {};
@@ -13,9 +11,9 @@ const convertArrayToObject = (array, key) => {
   }, initialValue);
 };
 
-const usePosts = () => {
+const usePosts = (_socket) => {
   const [posts, setPosts] = useState({});
-  const socket = useSocket(constants.server_url)
+  const socket = React.useRef(_socket).current
 
   const getPosts = async () => {
     const p = await PostService.getPosts(20);
@@ -27,20 +25,27 @@ const usePosts = () => {
   }, []);
 
   useEffect(()=>{
-    socket.on("update-post", async (newPost) => {
-      const data = await PostService.getOnePost(newPost)
-      if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
-    })
-    socket.on("new-post", async (newPost) => {
-      const data = await PostService.getOnePost(newPost)
-      if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
-    })
-    socket.on("delete-post", (deletedPost) => {
+    if(socket){
+      socket.on("update-post", async (newPost) => {
+        const data = await PostService.getOnePost(newPost)
+        if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data}))
+      })
+      socket.on("new-post", async (newPost) => {
+        const data = await PostService.getOnePost(newPost)
+        if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
+      })
+      socket.on("delete-post", (deletedPost) => {
         setPosts((prevPosts)=>{
-          const { [deletedPost]: _, ...rest } = prevPosts
+          const { [deletedPost]: deleted, ...rest } = prevPosts
           return rest
         })
-    })
+      })
+    }
+    return () => {
+      socket.off("update-post")
+      socket.off("new-post")
+      socket.off("delete-post")
+    }
   }, [socket])
 
   return posts;
