@@ -9,7 +9,7 @@ const useSocket = (...args) => {
       socket.removeAllListeners();
       socket.close();
     };
-  }, [socket]);
+  }, []);
   return socket;
 };
 

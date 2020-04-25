@@ -9,13 +9,14 @@ const store = createStore(StoreModel, {
   name: 'TD-State'
 });
 
+
+//socket stuff
 export const SocketContext = createContext();
 
 export const SocketProvider = ({ children, socket }) => {
-  console.log(socket)
-  const posts = usePosts()
+  const posts = usePosts(socket)
   return (
-    <SocketContext.Provider value={{socket: socket, posts: posts}}>
+    <SocketContext.Provider value={{posts: posts}}>
       {children}
     </SocketContext.Provider>
   )
