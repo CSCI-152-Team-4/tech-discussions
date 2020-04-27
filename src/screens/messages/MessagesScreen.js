@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inline: {
     display: "inline",
+    color: "grey",
   },
   modal: {
     top: 0,
@@ -62,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 const MessagesScreen = () => {
   const classes = useStyles();
   const history = useHistory();
-  const message = `Message preview if avaliable`;
   const [modalOpen, setModalOpen] = React.useState(false);
   const userId = useStoreState(({ User }) => User.userId);
   const [friends, setFriends] = React.useState([]);
@@ -89,30 +89,14 @@ const MessagesScreen = () => {
   return (
     <Container className={classes.root}>
       <Grid container wrap="nowrap" spacing={0} className={classes.rot}>
-        <List>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar>R</Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Friend Name"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {message}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
+        <List style={{ width: "100%" }}>
           {friends &&
             friends.map((friend, i) => {
               return (
-                <ListItem alignItems="flex-start">
+                <ListItem
+                  alignItems="flex-start"
+                  onClick={() => history.push(`/messages/${friend._id}`)}
+                >
                   <ListItemAvatar>
                     <Avatar>{friend.firstName[0]}</Avatar>
                   </ListItemAvatar>
@@ -125,8 +109,9 @@ const MessagesScreen = () => {
                           variant="body2"
                           className={classes.inline}
                           color="textPrimary"
-                        ></Typography>
-                        {message}
+                        >
+                          View Messages
+                        </Typography>
                       </React.Fragment>
                     }
                   />

@@ -34,6 +34,19 @@ async function getFriends(userId) {
   }
 }
 
+async function getMessages(userId, friendId) {
+  try {
+    const { data } = await Axios.get(
+      `${constants.server_url}/users/messages/${userId}/${friendId}`
+    );
+    console.log("data", data);
+    return data;
+  } catch (err) {
+    console.log("err", err);
+    return [];
+  }
+}
+
 export default {
   sendMessage,
   addFriend,

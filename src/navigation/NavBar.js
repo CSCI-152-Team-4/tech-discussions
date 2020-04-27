@@ -10,39 +10,46 @@ import {
   ListItemText,
   ListItemIcon,
   makeStyles,
-  TextField
+  TextField,
 } from "@material-ui/core";
-import { Menu, Search, Add, Home, Settings, ExitToApp, Email} from "@material-ui/icons";
+import {
+  Menu,
+  Search,
+  Add,
+  Home,
+  Settings,
+  ExitToApp,
+  Email,
+} from "@material-ui/icons";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { useLocation, useHistory } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   main: {
-    height: "100%",
-    justifyContent: "center"
+    flex: 1,
+    flexGrow: 0,
   },
   drawer: {
-    width: "75vw"
+    width: "75vw",
   },
   closeDrawer: {
     display: "flex",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   menuTop: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   menuTitle: {
     width: "100%",
-    textAlign: "center"
+    textAlign: "center",
   },
   search: {
     marginTop: "auto",
-    marginBottom: "auto"
-  }
+    marginBottom: "auto",
+  },
 }));
 
 export default function NavBar(props) {
@@ -51,8 +58,8 @@ export default function NavBar(props) {
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
   const history = useHistory();
-  const logout = useStoreActions(actions => actions.User.logout);
-  const [search, setSearch] = useState("")
+  const logout = useStoreActions((actions) => actions.User.logout);
+  const [search, setSearch] = useState("");
 
   const title = useMemo(() => {
     switch (location.pathname) {
@@ -81,15 +88,29 @@ export default function NavBar(props) {
               <ArrowBackIosIcon color="inherit" />
             </IconButton>
           )}
-          {!showSearch && <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
-            {title}
-          </Typography>}
+          {!showSearch && (
+            <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
+              {title}
+            </Typography>
+          )}
         </div>
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
-          {showSearch && <TextField placeholder="search by title..." className={classes.search} fullWidth autoFocus onChange={(e)=>setSearch(e.target.value)} />}
-          <IconButton color="inherit" onClick={() => setShowSearch(!showSearch)}>
+          {showSearch && (
+            <TextField
+              placeholder="search by title..."
+              className={classes.search}
+              fullWidth
+              autoFocus
+              onBlur={() => setShowSearch(false)}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          )}
+          <IconButton
+            color="inherit"
+            onClick={() => (showSearch ? 0 : setShowSearch(true))}
+          >
             <Search fontSize="large" />
           </IconButton>
           <IconButton
@@ -128,19 +149,47 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
-            
-            <ListItem button key={"messages"} onClick={()=>{history.push("/messages"); setDrawerOpen(false)}}>
-              <ListItemIcon> <Email/> </ListItemIcon>
+
+            <ListItem
+              button
+              key={"messages"}
+              onClick={() => {
+                history.push("/messages");
+                setDrawerOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                {" "}
+                <Email />{" "}
+              </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
 
-            <ListItem button key={"settings"} onClick={()=>{history.push("/settings"); setDrawerOpen(false)}}>
-              <ListItemIcon><Settings/></ListItemIcon>
+            <ListItem
+              button
+              key={"settings"}
+              onClick={() => {
+                history.push("/settings");
+                setDrawerOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <Settings />
+              </ListItemIcon>
               <ListItemText primary={"Settings"} />
             </ListItem>
 
-            <ListItem button key={"logout"} onClick={()=>{logout(); setDrawerOpen(false)}}>
-              <ListItemIcon><ExitToApp/></ListItemIcon>
+            <ListItem
+              button
+              key={"logout"}
+              onClick={() => {
+                logout();
+                setDrawerOpen(false);
+              }}
+            >
+              <ListItemIcon>
+                <ExitToApp />
+              </ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
           </List>
