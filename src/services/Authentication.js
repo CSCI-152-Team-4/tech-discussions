@@ -22,15 +22,15 @@ const login = async (email, pass) => {
     })
     if (data.userFound && data.loggedIn) return {
       status: "success",
-      userId: data.userId
+      user: data.user
     }
     else if (data.userFound && !data.loggedIn) return {
       status: "Incorrect Credentials",
-      userId: ""
+      user: {}
     }
     else return {
       status: "User Not Found",
-      userId: ""
+      user: {}
     }
   } catch(err){
     console.log('err', err)
@@ -46,15 +46,15 @@ const signup = async (email, pass) => {
     })
     if(!data.userExists && data.userCreated) return {
       status: "success",
-      userId: data.userId
+      user: data.user
     }
     else if(data.userExists && !data.userCreated) return {
       status: "User Already Exists",
-      userId: ""
+      user: {}
     }
     else if (!data.userExists && !data.userCreated) return {
       status: "Error Creating User",
-      userId: ""
+      user: {}
     }
   } catch(err){
     console.log('err', err)

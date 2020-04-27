@@ -10,21 +10,21 @@ const initial = {
   firstName: "",
   lastName: "",
   email: "",
-  password: "",
   username: "",
   userId: "",
   loggedIn: false,
   loginError: "",
   stayLoggedIn: true,
+  friendCode: ""
 }
 
 const userModel = persist({
   firstName: "",
   lastName: "",
   email: "",
-  password: "",
   username: "",
   userId: "",
+  friendCode: "",
   loggedIn: false,
   loginError: "",
   stayLoggedIn: true,
@@ -37,19 +37,28 @@ const userModel = persist({
   setId: action((state, payload)=>{
     state.userId = payload
   }),
+  loginSetter: action((state, user) => {
+    Object.assign(state, {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.email,
+      userId: user._id,
+      friendCode: user.friendCode,
+      loggedIn: true,
+    })
+  }),
   login: thunk(async (actions, {email, password})=>{
-    let res = await Auth.login(email, password)
-    if(res.status === "success"){
-      actions.setLoggedIn(true)
-      actions.setId(res.userId)
-    } else actions.setLoginError(res.status)
+    let { status, user } = await Auth.login(email, password)
+    if(status === "success"){
+      actions.loginSetter(user)
+    } else actions.setLoginError(status)
   }),
   signup: thunk(async(actions, {email, password})=>{
-    let res = await Auth.signup(email, password)
-    if(res.status === "success"){
-      actions.setLoggedIn(true)
-      actions.setId(res.userId)
-    } else actions.setLoginError(res.status)
+    let { status, user } = await Auth.signup(email, password)
+    if(status === "success"){
+      actions.loginSetter(user)
+    } else actions.setLoginError(status)
   }),
   logout: action((state)=>{
     Object.assign(state, initial)
