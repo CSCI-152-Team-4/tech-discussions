@@ -18,31 +18,31 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © tech-discussions '}
+      {"Copyright © tech-discussions "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
-  },  
+    alignItems: "center",
+  },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(5),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function SignupScreen() {
@@ -50,9 +50,15 @@ export default function SignupScreen() {
   const history = useHistory();
 
   const { setLoggedIn, signup } = useStoreActions(({ User }) => User);
-  const { loggedIn, loginError } = useStoreState(({User})=>User)
-  const [creds, setCreds] = useState({email: "", password: ""})
-  const [err, setErr] = useState("")
+  const { loggedIn, loginError } = useStoreState(({ User }) => User);
+  const [creds, setCreds] = useState({
+    email: "",
+    password: "",
+    username: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     setLoggedIn(false);
@@ -62,18 +68,25 @@ export default function SignupScreen() {
     if (loggedIn) history.push("/home");
   }, [history, loggedIn]);
 
-  useEffect(()=>{
-    setErr(loginError)
-  },[loginError])
+  useEffect(() => {
+    setErr(loginError);
+  }, [loginError]);
 
-  const handleClick = React.useCallback((e) => {
-    e.preventDefault()
-    if(creds.email.length > 0 && creds.password.length > 0){
-      if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
-        signup(creds)
-      else setErr("Email must be a Fresno State account only")
-    }
-  }, [creds.email, creds.password, creds, signup])
+  const handleClick = React.useCallback(
+    (e) => {
+      e.preventDefault();
+      if (creds.email.length > 0 && creds.password.length > 0) {
+        if (
+          RegExp(/[\S]+.mail.fresnostate.edu/).test(
+            creds.email.trim().toLowerCase()
+          )
+        )
+          signup(creds);
+        else setErr("Email must be a Fresno State account only");
+      }
+    },
+    [creds.email, creds.password, creds, signup]
+  );
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,50 +99,61 @@ export default function SignupScreen() {
           Sign Up
         </Typography>
         <form className={classes.form} noValidate>
-          <Typography style={{textAlign: 'center', color: 'red'}}>{err}</Typography>
+          <Typography style={{ textAlign: "center", color: "red" }}>
+            {err}
+          </Typography>
           <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                onChange={(e)=>{
-                  setCreds(({username})=>({username, username: e.target.value}))
-                  e.persist()
-                }}
-            />
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            onChange={(e) => {
+              setCreds((prevCreds) => ({
+                ...prevCreds,
+                username: e.target.value,
+              }));
+              e.persist();
+            }}
+          />
           <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                name="firstName"
-                autoComplete="fname"
-                autoFocus
-                onChange={(e)=>{
-                  setCreds(({firstName})=>({firstName, firstName: e.target.value}))
-                  e.persist()
-                }}
-            />
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            autoComplete="fname"
+            autoFocus
+            onChange={(e) => {
+              setCreds((prevCreds) => ({
+                ...prevCreds,
+                firstName: e.target.value,
+              }));
+              e.persist();
+            }}
+          />
           <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                onChange={(e)=>{
-                  setCreds(({lastName})=>({lastName, lastName: e.target.value}))
-                  e.persist()
-                }}
-              />
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="lastName"
+            label="Last Name"
+            name="lastName"
+            autoComplete="lname"
+            onChange={(e) => {
+              setCreds((prevCreds) => ({
+                ...prevCreds,
+                lastName: e.target.value,
+              }));
+              e.persist();
+            }}
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -140,9 +164,12 @@ export default function SignupScreen() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(e)=>{
-              setCreds(({password})=>({password, email: e.target.value}))
-              e.persist()
+            onChange={(e) => {
+              setCreds((prevCreds) => ({
+                ...prevCreds,
+                email: e.target.value,
+              }));
+              e.persist();
             }}
           />
           <TextField
@@ -155,9 +182,12 @@ export default function SignupScreen() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(e)=>{
-              setCreds(({email})=>({email, password: e.target.value}))
-              e.persist()
+            onChange={(e) => {
+              setCreds((prevCreds) => ({
+                ...prevCreds,
+                password: e.target.value,
+              }));
+              e.persist();
             }}
           />
           <Button
@@ -170,9 +200,16 @@ export default function SignupScreen() {
           >
             Sign Up
           </Button>
-          <Grid container style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Grid item xs={12} style={{textAlign: 'center', marginTop: '.5rem'}}>
-              <Link onClick={()=>history.push('/login')} variant="body2">
+          <Grid
+            container
+            style={{ justifyContent: "center", alignItems: "center" }}
+          >
+            <Grid
+              item
+              xs={12}
+              style={{ textAlign: "center", marginTop: ".5rem" }}
+            >
+              <Link onClick={() => history.push("/login")} variant="body2">
                 Already have an account? Log in
               </Link>
             </Grid>
