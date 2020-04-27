@@ -10,9 +10,7 @@ import {
   ListItemText,
   ListItemIcon,
   makeStyles,
-  TextField,
-  Badge,
-  badgeContent
+  TextField
 } from "@material-ui/core";
 import { Menu, Search, Add, Home, Settings, ExitToApp, Email} from "@material-ui/icons";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -132,7 +130,7 @@ export default function NavBar(props) {
             </ListItem>
             
             <ListItem button key={"messages"} onClick={()=>{history.push("/messages"); setDrawerOpen(false)}}>
-              <ListItemIcon> <Badge badgeContent={4} color="error"> </Badge> <Email/> </ListItemIcon>
+              <ListItemIcon> <Email/> </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
 
