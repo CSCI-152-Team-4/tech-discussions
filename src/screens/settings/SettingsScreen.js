@@ -65,7 +65,7 @@ return(
           variant="outlined"
           margin="normal"
           required
-          id="email"
+          id="new-pass"
           label="New Password"
           name="email"
           autoComplete="email"
@@ -76,7 +76,7 @@ return(
           variant="outlined"
           margin="normal"
           required
-          id="email"
+          id="confirm-pass"
           label="Confirm Password"
           name="email"
           autoComplete="email"
