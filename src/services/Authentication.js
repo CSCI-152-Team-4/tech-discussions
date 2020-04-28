@@ -14,6 +14,15 @@ catch(err){
   console.log('err', err)
 }}
 
+const deleteUser = async (userId) => {
+  try{
+    let { data } = await Axios.post(`${constants.server_url}/users/delete`, {
+      user: userId
+})}
+catch(err){
+  console.log('err', err)
+}}
+
 const login = async (email, pass) => {
   try{
     let { data } = await Axios.post(`${constants.server_url}/users/login`, {
