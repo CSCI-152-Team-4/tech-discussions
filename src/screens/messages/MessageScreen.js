@@ -6,11 +6,9 @@ import {
   Button,
   TextField,
   Typography,
-  Card,
   List,
   ListItem,
   Avatar,
-  ListItemText,
   ListItemAvatar,
 } from "@material-ui/core";
 import { useParams } from "react-router-dom";
@@ -39,7 +37,6 @@ const MessageScreen = () => {
   const classes = useStyles();
   const { friendId } = useParams();
   const { userId, firstName } = useStoreState(({ User }) => User);
-  const inputRef = React.useRef();
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -51,7 +48,6 @@ const MessageScreen = () => {
         userId,
         friendId
       );
-      console.log(friendName, messages);
       setMessages(messages);
       setFriendName(friendName.firstName);
     };
