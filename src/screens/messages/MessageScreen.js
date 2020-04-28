@@ -166,6 +166,7 @@ const MessageScreen = () => {
               e.persist();
               setTyping(false);
             }}
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
             style={{ maxHeight: "80%", width: "100%", overflowY: "scroll" }}
           />
