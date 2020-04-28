@@ -93,6 +93,19 @@ return(
           color = 'primary'>
           Confirm
         </Button>
+        <Grid item container xs= {12} justify ='center' >
+            <Button
+              onClick = {() => {
+                AuthenticationService.deleteUser(userId);
+                history.push('/signup')
+              }}  
+              className = {classes.button1}
+              variant = 'contained'
+              color = 'secondary'
+              >
+                Delete Account
+            </Button>  
+          </Grid>
       </Grid>
     </Container>
 )

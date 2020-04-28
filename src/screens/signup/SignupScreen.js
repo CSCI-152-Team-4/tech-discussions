@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -25,7 +26,17 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: "100vh"
+  },
+  image: {
+    // backgroundColor:
+    //   theme.palette.type === "light"
+    //     ? theme.palette.grey[50]
+    //     : theme.palette.grey[900],
+    height: "100%"
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -38,12 +49,17 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(5)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2)
   },
+  rightSide: {
+    padding: theme.spacing(1)
+  }
 }));
+
+const splash = require("./splash.jpg");
 
 export default function SignupScreen() {
   const classes = useStyles();
@@ -72,25 +88,29 @@ export default function SignupScreen() {
     setErr(loginError);
   }, [loginError]);
 
-  const handleClick = React.useCallback(
-    (e) => {
-      e.preventDefault();
-      if (creds.email.length > 0 && creds.password.length > 0) {
-        if (
-          RegExp(/[\S]+.mail.fresnostate.edu/).test(
-            creds.email.trim().toLowerCase()
-          )
-        )
-          signup(creds);
-        else setErr("Email must be a Fresno State account only");
-      }
-    },
-    [creds.email, creds.password, creds, signup]
-  );
+  const handleClick = React.useCallback((e) => {
+    e.preventDefault()
+    if(creds.email.length > 0 && creds.password.length > 0){
+      if(RegExp(/[\S]+.mail.fresnostate.edu/).test(creds.email.trim().toLowerCase()))
+        signup(creds)
+      else setErr("Email must be a Fresno State Account only")
+    }
+  }, [creds.email, creds.password, creds, signup])
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+      <Grid container maxWidth className={classes.root}>
+      <Grid item xs={false} sm={4} md={7} className={classes.image}>
+        <img style={{ height: "100%", width: "100%", objectFit: 'cover' }} src={splash}  alt="splash image" />
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        elevation={6}
+        square
+        className={classes.rightSide}
+      >
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -99,9 +119,7 @@ export default function SignupScreen() {
           Sign Up
         </Typography>
         <form className={classes.form} noValidate>
-          <Typography style={{ textAlign: "center", color: "red" }}>
-            {err}
-          </Typography>
+          <Typography style={{textAlign: 'center', color: 'red'}}> {err} </Typography>
           <TextField
             variant="outlined"
             margin="normal"
@@ -214,11 +232,12 @@ export default function SignupScreen() {
               </Link>
             </Grid>
           </Grid>
+          <Box mt={8}>
+            <Copyright />
+          </Box>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+    </Grid>
+   </Grid>   
   );
 }
