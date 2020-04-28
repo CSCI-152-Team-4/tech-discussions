@@ -6,11 +6,11 @@ import { useStoreRehydrated, useStoreState } from "easy-peasy";
 
 import Routes from "./Routes";
 import NavBar from "./NavBar";
-import { Grid } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 
 const Navigator = () => {
   const rehydrated = useStoreRehydrated();
-  const loggedIn = useStoreState(state => state.User.loggedIn); // todo add auth system
+  const loggedIn = useStoreState((state) => state.User.loggedIn); // todo add auth system
   const location = useLocation();
 
   const showNav = useMemo(
@@ -19,37 +19,46 @@ const Navigator = () => {
   );
 
   return rehydrated ? (
-    <Grid container>
+    <Box
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       {showNav && <NavBar />}
-      <Switch>
-        {Routes.map(({ Component, path, locked }, index) => {
-          return locked ? (
-            <PrivateRoute
-              path={path}
-              Component={Component}
-              key={`p-index-${index}`}
-              loggedIn={loggedIn}
-            />
-          ) : (
-            <Route
-              exact
-              path={path}
-              key={`r-index-${index}`}
-              render={props => <Component {...props} />}
-            />
-          );
-        })}
-        <Route
-          exact
-          path="/"
-          render={props => <Redirect {...props} to="/home" />}
-        />
-        <Route exact path="/not-found">
-          <div>not found</div>
-        </Route>
-        <Route render={() => <Redirect to="not-found" />} />
-      </Switch>
-    </Grid>
+      <Box style={{ flex: 1, width: "100%" }}>
+        <Switch>
+          {Routes.map(({ Component, path, locked }, index) => {
+            return locked ? (
+              <PrivateRoute
+                path={path}
+                Component={Component}
+                key={`p-index-${index}`}
+                loggedIn={loggedIn}
+              />
+            ) : (
+              <Route
+                exact
+                path={path}
+                key={`r-index-${index}`}
+                render={(props) => <Component {...props} />}
+              />
+            );
+          })}
+          <Route
+            exact
+            path="/"
+            render={(props) => <Redirect {...props} to="/home" />}
+          />
+          <Route exact path="/not-found">
+            <div>not found</div>
+          </Route>
+          <Route render={() => <Redirect to="not-found" />} />
+        </Switch>
+      </Box>
+    </Box>
   ) : (
     <div>loading state...</div>
   );
@@ -58,14 +67,14 @@ const Navigator = () => {
 const PrivateRoute = ({ Component, loggedIn, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       loggedIn ? <Component {...props} /> : <Redirect {...props} to="/login" />
     }
   />
 );
 PrivateRoute.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Navigator;
