@@ -1,10 +1,6 @@
 import Axios from "axios";
 import constants from "../configs/constants";
 
-function sendMessage(body, userId) {
-  console.log(body, userId);
-}
-
 async function addFriend(userId, friendCode) {
   try {
     const { data } = await Axios.post(
@@ -37,7 +33,7 @@ async function getFriends(userId) {
 async function getMessages(userId, friendId) {
   try {
     const { data } = await Axios.get(
-      `${constants.server_url}/users/messages/${userId}/${friendId}`
+      `${constants.server_url}/messages/${userId}/${friendId}`
     );
     console.log("data", data);
     return data;
@@ -47,8 +43,22 @@ async function getMessages(userId, friendId) {
   }
 }
 
+async function sendMessage(userId, friendId, body) {
+  try {
+    const { data } = await Axios.post(`${constants.server_url}/messages`, {
+      body: body,
+      sender: userId,
+      receiver: friendId,
+    });
+    return data;
+  } catch (err) {
+    return false;
+  }
+}
+
 export default {
   sendMessage,
   addFriend,
   getFriends,
+  getMessages,
 };
