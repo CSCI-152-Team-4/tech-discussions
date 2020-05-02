@@ -25,7 +25,7 @@ afterEach(async()=> {
 });
 
 test('clicking button', async ()=>{
-//await page.click("Button.MuiButtonBase-root");
+//await page.click("Button.MuiButtonBase-root");// clicking not working yet but loading page and url is taking in the right url
 const url = await page.url();
 console.log(url);
 expect(url).toMatch("http://localhost:3000/login");
