@@ -10,7 +10,6 @@ import {
   ListItemText,
   ListItemIcon,
   makeStyles,
-  TextField,
 } from "@material-ui/core";
 import {
   Menu,
@@ -46,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     textAlign: "center",
   },
-  search: {
-    marginTop: "auto",
-    marginBottom: "auto",
-  },
 }));
 
 export default function NavBar(props) {
@@ -59,7 +54,6 @@ export default function NavBar(props) {
   const location = useLocation();
   const history = useHistory();
   const logout = useStoreActions((actions) => actions.User.logout);
-  const [search, setSearch] = useState("");
 
   const title = useMemo(() => {
     switch (location.pathname) {
@@ -90,31 +84,13 @@ export default function NavBar(props) {
               <ArrowBackIosIcon color="inherit" />
             </IconButton>
           )}
-          {!showSearch && (
-            <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
-              {title}
-            </Typography>
-          )}
+          <Typography variant="h5" style={{ marginLeft: "0.5rem" }}>
+            {title}
+          </Typography>
         </div>
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
-          {showSearch && (
-            <TextField
-              placeholder="search by title..."
-              className={classes.search}
-              fullWidth
-              autoFocus
-              onBlur={() => setShowSearch(false)}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          )}
-          <IconButton
-            color="inherit"
-            onClick={() => (showSearch ? 0 : setShowSearch(true))}
-          >
-            <Search fontSize="large" />
-          </IconButton>
           <IconButton
             style={{ marginRight: ".5rem" }}
             color="inherit"
