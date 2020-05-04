@@ -98,7 +98,7 @@ return(
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
                 history.push('/signup')
-              }}  
+              }}
               className = {classes.button1}
               variant = 'contained'
               color = 'secondary'
