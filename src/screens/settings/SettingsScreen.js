@@ -93,7 +93,7 @@ return(
           className = {classes.button}
           variant = 'contained'
           color = 'primary'>
-          <span name = 'Q'>
+          <span class = 'Q'>
           Confirm
           </span>
         </Button>
@@ -107,7 +107,7 @@ return(
               variant = 'contained'
               color = 'secondary'
               >
-                <span name = 'W'>
+                <span class = 'W'>
                 Delete Account
                 </span>
             </Button>  
