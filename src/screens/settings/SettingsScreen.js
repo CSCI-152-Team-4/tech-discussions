@@ -98,21 +98,19 @@ return(
           </span>
         </Button>
         <Grid item container xs= {12} justify ='center' >
-          <span>
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
-                window.location.href="https://tech-discussions.netlify.app/signup"
+                history.push("/signup");
               }}
               className = {classes.button1}
               variant = 'contained'
               color = 'secondary'
               >
-                <span class = 'W'>
+            <span class = 'W'>
                 Delete Account
             </span>
             </Button>
-         </span>
           </Grid>
       </Grid>
     </Container>
