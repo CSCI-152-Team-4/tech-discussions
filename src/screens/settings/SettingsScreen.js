@@ -94,6 +94,7 @@ return(
           Confirm
         </Button>
         <Grid item container xs= {12} justify ='center' >
+          <span>
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
@@ -104,7 +105,8 @@ return(
               color = 'secondary'
               >
                 Delete Account
-            </Button>  
+            </Button>
+            </span>
           </Grid>
       </Grid>
     </Container>
