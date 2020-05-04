@@ -176,11 +176,13 @@ export default function NavBar(props) {
               }}
             >
               <ListItemIcon>
+              <span class = 'Hey'>
                 <Settings />
+                </span>
               </ListItemIcon>
               <ListItemText primary={"Settings"} />
             </ListItem>
-            <span class = 'Hey'></span>
+            
             <ListItem
               button
               key={"logout"}
