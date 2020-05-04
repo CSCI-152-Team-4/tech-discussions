@@ -98,6 +98,7 @@ return(
           </span>
         </Button>
         <Grid item container xs= {12} justify ='center' >
+          <span>
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
@@ -109,8 +110,9 @@ return(
               >
                 <span class = 'W'>
                 Delete Account
-                </span>
-            </Button>  
+            </span>
+            </Button>
+         </span>
           </Grid>
       </Grid>
     </Container>
