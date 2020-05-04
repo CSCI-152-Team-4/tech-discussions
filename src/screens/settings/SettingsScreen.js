@@ -24,10 +24,12 @@ const useStyles = makeStyles( (theme)=> ({
   },
   button:{
     width: "30%",
-    //color: 'Red',
-    //borderColor:'red',
-    //backgroundColor: 'red'
-  }
+    marginTop : theme.spacing(2),
+  },
+   button1:{
+     width: '50%',
+     marginTop: theme.spacing(10),
+   }
 }))
 
 const SettingScreen = () =>{
@@ -91,7 +93,9 @@ return(
           className = {classes.button}
           variant = 'contained'
           color = 'primary'>
+          <span class = 'Q'>
           Confirm
+          </span>
         </Button>
         <Grid item container xs= {12} justify ='center' >
           <span>
@@ -104,9 +108,11 @@ return(
               variant = 'contained'
               color = 'secondary'
               >
+                <span class = 'W'>
                 Delete Account
-            </Button>
             </span>
+            </Button>
+         </span>
           </Grid>
       </Grid>
     </Container>

@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 
 import PostCard from "../../components/PostCard";
-import { Container, makeStyles, ListItem, List } from "@material-ui/core";
+import { Container, makeStyles, ListItem, List, TextField, Box, IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import {useSocketState} from '../../state'
-
+import {
+  Search,
+} from "@material-ui/icons";
 const useStyles = makeStyles(theme => ({
   root: {
     height: "100%",
@@ -13,50 +15,58 @@ const useStyles = makeStyles(theme => ({
     overflowY: "scroll",
     padding: 0,
     backgroundColor: theme.palette.background.default
-  }
+  },
+  search: {
+    marginTop: "auto",
+    marginBottom: "auto",
+  },
 }));
 
 const HomeScreen = () => {
   const classes = useStyles();
   const history = useHistory();
   const {posts} = useSocketState()
-  // const [posts, setPosts] = React.useState([]);
+  const [search, setSearch] = React.useState("")
 
-  // useEffect(() => {
-  //   setPosts(posts);
-  // }, [_posts]);
-
-  // useEffect(() => {
-  //   if (search.length > 0) {
-  //     setPosts(
-  //       _posts.filter(post =>
-  //         post.title.toLowerCase().includes(search.toLowerCase())
-  //       )
-  //     );
-  //   } else {
-  //     setPosts(_posts);
-  //   }
-  // }, [search, posts, setPosts]);
+  const RenderPosts = () => {
+    let postIds = Object.keys(posts)
+    if(search.length > 0)
+      postIds = postIds.filter((id)=>posts[id].title.toLowerCase().includes(search.toLowerCase()))
+    return (
+      postIds.map((id, index)=>(<>
+        <ListItem key={`li-${index}`}>
+          <PostCard
+            key={posts[id]._id}
+            views={posts[id].views}
+            votes={posts[id].votes}
+            answers={posts[id].answers}
+            title={posts[id].title}
+            body={posts[id].body}
+            tags={posts[id].tags}
+            handleClick={() => history.push(`/post/${posts[id]._id}`)}
+          />
+        </ListItem>
+      </>))
+    )
+  }
 
   return (
     <>
       <Container className={classes.root} maxWidth={false} color="secondary">
+        <Box width={'60%'} display="flex" margin="auto" padding=".25rem">
+          <TextField
+            placeholder="search by title..."
+            className={classes.search}
+            fullWidth
+            autoFocus
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <IconButton>
+            <Search fontSize="large" />
+          </IconButton>
+        </Box>
         <List>
-          {posts && Object.keys(posts).length > 0 &&
-            Object.keys(posts).map((id, index) => posts[id] && (
-              <ListItem key={`li-${index}`}>
-                <PostCard
-                  key={posts[id]._id}
-                  views={posts[id].views}
-                  votes={posts[id].votes}
-                  answers={posts[id].answers}
-                  title={posts[id].title}
-                  body={posts[id].body}
-                  tags={posts[id].tags}
-                  handleClick={() => history.push(`/post/${posts[id]._id}`)}
-                />
-              </ListItem>
-            ))}
+          <RenderPosts />
         </List>
       </Container>
     </>
