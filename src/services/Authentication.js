@@ -86,4 +86,5 @@ export default {
   login,
   signup,
   changePass,
+  deleteUser
 };
