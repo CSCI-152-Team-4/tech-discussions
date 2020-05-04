@@ -94,11 +94,11 @@ return(
           Confirm
         </Button>
         <Grid item container xs= {12} justify ='center' >
-          <span>
+
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
-                window.location.href="https://tech-discussions.netlify.app/signup"
+                history.push("/signup");
               }}
               className = {classes.button1}
               variant = 'contained'
@@ -106,7 +106,6 @@ return(
               >
                 Delete Account
             </Button>
-            </span>
           </Grid>
       </Grid>
     </Container>

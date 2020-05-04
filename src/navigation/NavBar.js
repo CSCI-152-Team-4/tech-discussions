@@ -68,7 +68,7 @@ export default function NavBar(props) {
       case "/messages":
         return "Messages";
       case "/settings":
-        return "Settingss";
+        return "Settings";
       case "/test":
         return "Test";
       default:
