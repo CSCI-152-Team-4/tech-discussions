@@ -97,7 +97,7 @@ return(
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
-                history.push('/signup')
+                window.location.href="https://tech-discussions.netlify.app/signup"
               }}
               className = {classes.button1}
               variant = 'contained'
