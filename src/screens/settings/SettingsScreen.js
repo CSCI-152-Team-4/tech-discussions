@@ -93,7 +93,9 @@ return(
           className = {classes.button}
           variant = 'contained'
           color = 'primary'>
+          <span name = 'Q'>
           Confirm
+          </span>
         </Button>
         <Grid item container xs= {12} justify ='center' >
             <Button
@@ -105,7 +107,9 @@ return(
               variant = 'contained'
               color = 'secondary'
               >
+                <span name = 'W'>
                 Delete Account
+                </span>
             </Button>  
           </Grid>
       </Grid>
