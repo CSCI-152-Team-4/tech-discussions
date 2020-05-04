@@ -67,6 +67,8 @@ export default function NavBar(props) {
         return "Home";
       case "/test":
         return "Test";
+      case '/settings': 
+        return 'Settings';
       default:
         return "";
     }
