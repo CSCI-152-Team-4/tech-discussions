@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
   main: {
     flex: 1,
     flexGrow: 0,
+    position: 'sticky',
+    top: 0
   },
   drawer: {
     width: "75vw",
@@ -69,7 +71,7 @@ export default function NavBar(props) {
   }, [location]);
 
   return (
-    <AppBar position="static" className={classes.main}>
+    <AppBar className={classes.main}>
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ width: "50%", display: "flex", alignItems: "center" }}>
           <IconButton
