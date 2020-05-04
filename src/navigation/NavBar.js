@@ -180,7 +180,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Settings"} />
             </ListItem>
-
+            <span class = 'Hey'></span>
             <ListItem
               button
               key={"logout"}
