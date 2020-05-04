@@ -24,10 +24,12 @@ const useStyles = makeStyles( (theme)=> ({
   },
   button:{
     width: "30%",
-    //color: 'Red',
-    //borderColor:'red',
-    //backgroundColor: 'red'
-  }
+    marginTop : theme.spacing(2),
+  },
+   button1:{
+     width: '50%',
+     marginTop: theme.spacing(10),
+   }
 }))
 
 const SettingScreen = () =>{
