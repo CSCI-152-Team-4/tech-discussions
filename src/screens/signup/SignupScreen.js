@@ -204,6 +204,12 @@ export default function SignupScreen() {
               e.persist();
             }}
           />
+          <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive updates via email."
+              />
+            </Grid>
           <Button
             type="submit"
             fullWidth
