@@ -114,17 +114,14 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
             Tech-Discussions
           </Typography>
-          <Typography component="h1" variant="h5">
-            
-          </Typography>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign In
-          </Typography>
           <form className={classes.form} noValidate>
-            <Typography style={{ textAlign: "center", color: "red" }}> {err} </Typography>
+            <Typography  style={{ textAlign: "center", color: "red" }}> {err} </Typography>
+            <Typography component="h1" variant="h5">
+             Sign In
+            </Typography>
             <TextField
               variant="outlined"
               margin="normal"
