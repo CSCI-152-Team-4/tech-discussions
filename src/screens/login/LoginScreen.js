@@ -31,10 +31,6 @@ const useStyles = makeStyles(theme => ({
     height: "100vh"
   },
   image: {
-    // backgroundColor:
-    //   theme.palette.type === "light"
-    //     ? theme.palette.grey[50]
-    //     : theme.palette.grey[900],
     height: "100%"
   },
   paper: {
