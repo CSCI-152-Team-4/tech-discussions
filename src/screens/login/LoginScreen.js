@@ -119,9 +119,9 @@ export default function SignIn() {
           </Avatar>
           <form className={classes.form} noValidate>
             <Typography  style={{ textAlign: "center", color: "red" }}> {err} </Typography>
-            <Typography component="h1" variant="h5">
+            <Typography style ={{textAlign: 'center'}} component="h1" variant="h5">
              Sign In
-            </Typography>
+          </Typography>
             <TextField
               variant="outlined"
               margin="normal"
@@ -171,7 +171,7 @@ export default function SignIn() {
               className={classes.submit}
               onClick={handleClick}
             >
-              Sign In
+              Submit
             </Button>
             <Grid
               container
