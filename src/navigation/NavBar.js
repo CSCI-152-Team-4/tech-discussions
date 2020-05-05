@@ -162,7 +162,7 @@ export default function NavBar(props) {
                 <Settings />
                 </span>
               </ListItemIcon>
-              <ListItemText primary={"Settings"} />
+              <span class = 'hi'><ListItemText primary={"Settings"} /></span>
             </ListItem>
             
             <ListItem
