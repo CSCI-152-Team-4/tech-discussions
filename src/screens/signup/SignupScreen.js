@@ -104,7 +104,6 @@ export default function SignupScreen() {
         sm={8}
         md={5}
         elevation={6}
-        square
         className={classes.rightSide}
       >
       <div className={classes.paper}>

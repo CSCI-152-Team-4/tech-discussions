@@ -107,7 +107,6 @@ export default function SignIn() {
         sm={8}
         md={5}
         elevation={6}
-        square
         className={classes.rightSide}
       >
         <div className={classes.paper}>
@@ -187,9 +186,9 @@ export default function SignIn() {
                 xs={12}
                 style={{ textAlign: "center", marginTop: ".5rem" }}
               >
-                <span class = "Dt">
+                <span className = "Dt">
                 <Link onClick={() => history.push("/signup")} variant="body2">
-                 <span class = 'Da'> Don't have an account? Sign Up</span>
+                 <span className = 'Da'> Don't have an account? Sign Up</span>
                 </Link>
                 </span>
               </Grid>

@@ -32,7 +32,7 @@ const usePosts = (_socket) => {
       })
       socket.on("new-post", async (newPost) => {
         const data = await PostService.getOnePost(newPost)
-        if(data) setPosts((prevPosts) => ({ [newPost]: data, ...prevPosts }))
+        if(data) setPosts((prevPosts) => ({ ...prevPosts, [newPost]: data }))
       })
       socket.on("delete-post", (deletedPost) => {
         setPosts((prevPosts)=>{
