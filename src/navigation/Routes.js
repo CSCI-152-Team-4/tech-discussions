@@ -33,13 +33,13 @@ const Routes = [
     Component: MessagesNav,
     name: "Messages",
     path: "/messages",
-    locked: true
+    locked: false  
   },
   {
     Component: PostNav,
     name: "Posts",
     path: "/post",
-    locked: true 
+    locked: false
   }
 ];
 
