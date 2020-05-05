@@ -170,6 +170,7 @@ export default function NavBar(props) {
               key={"logout"}
               onClick={() => {
                 logout();
+                history.push('/login')
                 setDrawerOpen(false);
               }}
             >
