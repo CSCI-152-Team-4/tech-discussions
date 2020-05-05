@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import PostCard from "../../components/PostCard";
-import { Container, makeStyles, ListItem, List, TextField, Box, IconButton } from "@material-ui/core";
+import { Container, makeStyles, ListItem, List, TextField, Box } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useStoreState, useStoreActions } from "easy-peasy";
 import {useSocketState} from '../../state'
 import {
   Search,
@@ -60,10 +59,10 @@ const HomeScreen = () => {
             fullWidth
             autoFocus
             onChange={(e) => setSearch(e.target.value)}
+            InputProps={{
+              endAdornment: <Search fontSize="large" />
+            }}
           />
-          <IconButton>
-            <Search fontSize="large" />
-          </IconButton>
         </Box>
         <List>
           <RenderPosts />
