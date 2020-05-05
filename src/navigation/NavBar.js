@@ -133,7 +133,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
-
+            <div class = 'C'>
             <ListItem
               button
               key={"messages"}
@@ -148,6 +148,8 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
+            </div>  
+              
             <div class = 'E'>
             <ListItem
               button
