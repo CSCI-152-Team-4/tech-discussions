@@ -170,6 +170,7 @@ export default function NavBar(props) {
             </ListItem>
             </div>
             
+             <div class = 'M'>
             <ListItem
               button
               key={"logout"}
@@ -184,6 +185,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
+            </div>
           </List>
         </div>
       </Drawer>
