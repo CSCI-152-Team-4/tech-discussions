@@ -157,11 +157,13 @@ export default function NavBar(props) {
                 setDrawerOpen(false);
               }}
             >
+              <span class = 'Q'>
               <ListItemIcon>
               <span class = 'Hey'>
                 <Settings />
                 </span>
               </ListItemIcon>
+              </span>
               <span class = 'hi'><ListItemText primary={"Settings"} /></span>
             </ListItem>
             
