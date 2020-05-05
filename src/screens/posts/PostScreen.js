@@ -12,6 +12,16 @@ import MdEditor from "for-editor";
 import PostService from '../../services/Posts'
 import { useSocketState } from "../../state";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © tech-discussions "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: "1rem"
