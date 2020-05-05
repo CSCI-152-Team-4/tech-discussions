@@ -111,6 +111,12 @@ export default function SignIn() {
         className={classes.rightSide}
       >
         <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+            Tech-Discussions
+          </Typography>
+          <Typography component="h1" variant="h5">
+            
+          </Typography>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
