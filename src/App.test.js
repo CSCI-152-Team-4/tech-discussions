@@ -188,4 +188,31 @@ it("no title",async()=>{
       expect(res.length === 0).toBe(false);
       expect(typeof res[0].title !== "string").toBe(false);
       });
+      
+test("windowsize and screenshot pc",async()=>{
+  await page.goto("https://tech-discussions.netlify.app/login");
+  await page.setViewport({
+    width: 1920,
+    height: 1080,
+  });
+  await page.screenshot({ path: './image.jpg', type: 'jpeg' });
+});
+test("windowsize and screenshot ipad",async()=>{
+  await page.goto("https://tech-discussions.netlify.app/login");
+  await page.setViewport({
+    width: 768,
+    height: 1024,
+  });
+  await page.screenshot({ path: './image1.jpg', type: 'jpeg' });
+});
+test("windowsize and screenshot",async()=>{
+  await page.goto("https://tech-discussions.netlify.app/login");
+  await page.setViewport({
+    width: 375,
+    height: 812,
+  });
+  await page.screenshot({ path: './image2.jpg', type: 'jpeg' });
+});
+      
+      
       */
