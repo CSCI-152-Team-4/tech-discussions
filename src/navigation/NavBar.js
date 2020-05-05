@@ -97,6 +97,7 @@ export default function NavBar(props) {
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
+          <div class = 'Z'>
           <IconButton
             style={{ marginRight: ".5rem" }}
             color="inherit"
@@ -104,6 +105,7 @@ export default function NavBar(props) {
           >
             <Add fontSize="large" />
           </IconButton>
+          </div>
         </div>
       </Toolbar>
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
