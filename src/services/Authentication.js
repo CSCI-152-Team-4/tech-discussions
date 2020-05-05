@@ -2,6 +2,7 @@ import Axios from "axios";
 import constants from "../configs/constants";
 
 const changePass = async (newPass, oldPass, userId) => {
+  console.log(newPass,oldPass,userId);
   try {
     let { data } = await Axios.post(
       `${constants.server_url}/users/changePass`,
@@ -17,6 +18,7 @@ const changePass = async (newPass, oldPass, userId) => {
 };
 
 const deleteUser = async (userId) => {
+  console.log(userId);
   try{
     let { data } = await Axios.post(`${constants.server_url}/users/delete`, {
       user: userId
