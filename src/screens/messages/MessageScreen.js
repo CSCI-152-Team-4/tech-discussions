@@ -6,6 +6,7 @@ import {
   Button,
   TextField,
   Typography,
+  Box,
   List,
   ListItem,
   Avatar,
@@ -14,6 +15,16 @@ import {
 import { useParams } from "react-router-dom";
 import MessagesService from "../../services/Messages";
 import { useStoreState } from "easy-peasy";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © tech-discussions "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {

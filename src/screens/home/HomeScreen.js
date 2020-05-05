@@ -2,11 +2,23 @@ import React from "react";
 
 import PostCard from "../../components/PostCard";
 import { Container, makeStyles, ListItem, List, TextField, Box } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import {useSocketState} from '../../state'
 import {
   Search,
 } from "@material-ui/icons";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © tech-discussions "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -71,6 +83,8 @@ const HomeScreen = () => {
       </Container>
     </>
   )
+
+
 };
 
 export default HomeScreen;
