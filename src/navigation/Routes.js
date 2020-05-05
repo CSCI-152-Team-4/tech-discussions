@@ -9,7 +9,7 @@ const Routes = [
     Component: MainNav,
     name: "Home",
     path: "/home",
-    locked: false // changed it to false for testing
+    locked: true // changed it to false for testing
   },
   {
     Component: Screens.Login,
@@ -27,7 +27,7 @@ const Routes = [
     Component: SettingsNav,
     name: "Settings",
     path: "/settings",
-    locked: false // changed to false for testing
+    locked: true // changed to false for testing
   },
   {
     Component: MessagesNav,
