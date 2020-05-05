@@ -108,14 +108,17 @@ export default function SignupScreen() {
         className={classes.rightSide}
       >
       <div className={classes.paper}>
+      <Typography component="h1" variant="h5">
+          Tech-Discussions
+        </Typography>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
         <form className={classes.form} noValidate>
           <Typography style={{textAlign: 'center', color: 'red'}}> {err} </Typography>
+          <Typography style ={{textAlign: 'center'}} component="h1" variant="h5">
+             Sign Up
+          </Typography>
           <TextField
             variant="outlined"
             margin="normal"
@@ -218,7 +221,7 @@ export default function SignupScreen() {
             className={classes.submit}
             onClick={handleClick}
           >
-            Sign Up
+            Submit
           </Button>
           <Grid
             container
