@@ -187,7 +187,7 @@ export default function SignIn() {
                 style={{ textAlign: "center", marginTop: ".5rem" }}
               >
                 <Link onClick={() => history.push("/signup")} variant="body2">
-                  Don't have an account? Sign Up
+                 <span class = 'Da'> Don't have an account? Sign Up</span>
                 </Link>
               </Grid>
             </Grid>
