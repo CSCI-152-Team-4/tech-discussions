@@ -22,7 +22,6 @@ async function getFriends(userId) {
     const { data } = await Axios.get(
       `${constants.server_url}/users/friends/${userId}`
     );
-    console.log("data.friends", data.friends);
     return data.friends;
   } catch (err) {
     console.log("err", err);

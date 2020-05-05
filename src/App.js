@@ -18,7 +18,6 @@ const App = () => {
   },[darkMode])
 
   const postSocket = useSocket(constants.server_url)
-
   return (
     <StoreProvider store={store}>
       <SocketProvider socket={postSocket}>
