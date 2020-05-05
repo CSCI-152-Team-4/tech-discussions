@@ -133,7 +133,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
-
+            <div class = 'C'>
             <ListItem
               button
               key={"messages"}
@@ -148,6 +148,8 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
+            </div>  
+              
             <div class = 'E'>
             <ListItem
               button
@@ -168,6 +170,7 @@ export default function NavBar(props) {
             </ListItem>
             </div>
             
+             <div class = 'M'>
             <ListItem
               button
               key={"logout"}
@@ -182,6 +185,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Logout"} />
             </ListItem>
+            </div>
           </List>
         </div>
       </Drawer>
