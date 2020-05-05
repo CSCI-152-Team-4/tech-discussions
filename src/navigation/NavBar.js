@@ -97,6 +97,7 @@ export default function NavBar(props) {
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
+          <div class = 'Z'>
           <IconButton
             style={{ marginRight: ".5rem" }}
             color="inherit"
@@ -104,6 +105,7 @@ export default function NavBar(props) {
           >
             <Add fontSize="large" />
           </IconButton>
+          </div>
         </div>
       </Toolbar>
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
@@ -148,7 +150,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
-
+            <div class = 'W'>
             <ListItem
               button
               key={"settings"}
@@ -157,14 +159,16 @@ export default function NavBar(props) {
                 setDrawerOpen(false);
               }}
             >
+              <span class = 'Q'>
               <ListItemIcon>
               <span class = 'Hey'>
                 <Settings />
                 </span>
               </ListItemIcon>
-              <ListItemText primary={"Settings"} />
+              </span>
+              <span class = 'hi'><ListItemText primary={"Settings"} /></span>
             </ListItem>
-            
+            </div>
             <ListItem
               button
               key={"logout"}
