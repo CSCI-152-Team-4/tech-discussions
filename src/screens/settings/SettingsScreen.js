@@ -1,9 +1,20 @@
 import React, {useState} from 'react';
 import { Container, makeStyles, Grid, Typography, Button, TextField} from '@material-ui/core';
+import Box from "@material-ui/core/Box";
 import { useHistory } from 'react-router-dom';
 import usePosts from '../../hooks/usePosts';
 import { useStoreState , useStoreActions} from 'easy-peasy';
 import AuthenticationService from '../../services/Authentication';
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © tech-discussions "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles( (theme)=> ({
   root: {
@@ -113,6 +124,9 @@ return(
             </Button>
           </Grid>
       </Grid>
+      <Box mt={8}>
+            <Copyright />
+          </Box>
     </Container>
 )
 }
