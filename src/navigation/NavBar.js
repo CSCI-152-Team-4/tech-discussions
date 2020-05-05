@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar(props) {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
   const history = useHistory();
   const logout = useStoreActions((actions) => actions.User.logout);
@@ -97,7 +96,6 @@ export default function NavBar(props) {
         <div
           style={{ width: "70%", display: "flex", justifyContent: "flex-end" }}
         >
-          <div class = 'Z'>
           <IconButton
             style={{ marginRight: ".5rem" }}
             color="inherit"
@@ -105,7 +103,6 @@ export default function NavBar(props) {
           >
             <Add fontSize="large" />
           </IconButton>
-          </div>
         </div>
       </Toolbar>
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
@@ -135,7 +132,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
-            <div class = 'C'>
+            <div className='C'>
             <ListItem
               button
               key={"messages"}
@@ -152,7 +149,7 @@ export default function NavBar(props) {
             </ListItem>
             </div>  
               
-            <div class = 'E'>
+            <div className= 'E'>
             <ListItem
               button
               key={"settings"}
@@ -161,18 +158,18 @@ export default function NavBar(props) {
                 setDrawerOpen(false);
               }}
             >
-              <div class = 'Q'>
+              <div className = 'Q'>
               <ListItemIcon>
-              <div class = 'Hey'>
+              <div className = 'Hey'>
                 <Settings />
                 </div>
               </ListItemIcon>
               </div>
-              <div class = 'hi'><ListItemText primary={"Settings"} /></div>
+              <div className = 'hi'><ListItemText primary={"Settings"} /></div>
             </ListItem>
             </div>
             
-             <div class = 'M'>
+             <div className = 'M'>
             <ListItem
               button
               key={"logout"}
