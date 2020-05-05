@@ -148,7 +148,7 @@ export default function NavBar(props) {
               </ListItemIcon>
               <ListItemText primary={"Messages"} />
             </ListItem>
-
+            <div class = 'E'>
             <ListItem
               button
               key={"settings"}
@@ -157,15 +157,16 @@ export default function NavBar(props) {
                 setDrawerOpen(false);
               }}
             >
-              <span class = 'Q'>
+              <div class = 'Q'>
               <ListItemIcon>
-              <span class = 'Hey'>
+              <div class = 'Hey'>
                 <Settings />
-                </span>
+                </div>
               </ListItemIcon>
-              </span>
-              <span class = 'hi'><ListItemText primary={"Settings"} /></span>
+              </div>
+              <div class = 'hi'><ListItemText primary={"Settings"} /></div>
             </ListItem>
+            </div>
             
             <ListItem
               button
