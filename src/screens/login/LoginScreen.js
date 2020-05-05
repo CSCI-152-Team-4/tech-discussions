@@ -177,7 +177,7 @@ export default function SignIn() {
               style={{ justifyContent: "center", alignItems: "center" }}
             >
               <Grid item xs={12} style={{ textAlign: "center" }}>
-                <Link href="#" variant="body2">
+                <Link onClick={()=> history.push("/password")} variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
@@ -186,9 +186,11 @@ export default function SignIn() {
                 xs={12}
                 style={{ textAlign: "center", marginTop: ".5rem" }}
               >
+                <div class = 'Dt'>
                 <Link onClick={() => history.push("/signup")} variant="body2">
-                  Don't have an account? Sign Up
+                  <span class= 'DA'>Don't have an account? Sign Up</span>
                 </Link>
+                </div>
               </Grid>
             </Grid>
             <Box mt={5}>
