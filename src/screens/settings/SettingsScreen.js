@@ -101,16 +101,16 @@ return(
             <Button
               onClick = {() => {
                 AuthenticationService.deleteUser(userId);
-                history.push('/signup')
-              }}  
+                history.push("/signup");
+              }}
               className = {classes.button1}
               variant = 'contained'
               color = 'secondary'
               >
-                <span class = 'W'>
+            <span class = 'W'>
                 Delete Account
-                </span>
-            </Button>  
+            </span>
+            </Button>
           </Grid>
       </Grid>
     </Container>

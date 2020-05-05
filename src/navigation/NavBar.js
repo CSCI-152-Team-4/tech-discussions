@@ -61,6 +61,10 @@ export default function NavBar(props) {
     switch (location.pathname) {
       case "/home":
         return "Home";
+      case "/messages":
+        return "Messages";
+      case "/settings":
+        return "Settings";
       case "/test":
         return "Test";
       case '/settings': 
