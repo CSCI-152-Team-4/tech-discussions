@@ -8,7 +8,7 @@
     4. NodeJS
 
 #### Note:
-Public folder contains the root html and setup information for the service worker. src folder contains the application. All screens, navigation, logic, data, styling. and everything else is located in this subdirectory.
+**Public** folder contains the root html and setup information for the service worker. **src** folder contains the application. All screens, navigation, logic, data, styling. and everything else is located in this subdirectory.
 
 ## How to Run:
 Have everything downloaded listed above or they can be found in Specifications in the wiki under MERN STACL. Once these tools have been downloadeded, you are then able to clone this repository (tech-discussions) and the td-backend respository. Open both directories (tech-discussions and td-backend) in any code editor of your choice, preferrably Visual Studio Code. 
