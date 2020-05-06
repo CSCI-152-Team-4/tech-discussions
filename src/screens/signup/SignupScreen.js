@@ -66,7 +66,7 @@ export default function SignupScreen() {
   const [creds, setCreds] = useState({
     email: "",
     password: "",
-    username: "",
+    userName: "",
     firstName: "",
     lastName: "",
   });
@@ -123,9 +123,9 @@ export default function SignupScreen() {
             margin="normal"
             required
             fullWidth
-            id="username"
+            id="userName"
             label="Username"
-            name="username"
+            name="userName"
             autoComplete="username"
             onChange={(e) => {
               setCreds((prevCreds) => ({
